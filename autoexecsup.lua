@@ -19,7 +19,7 @@ local function isInAutoExecFolder(directory)
 end
 if isInAutoExecFile(currentFileName) and isInAutoExecFolder(currentDirectory) then
     wait(3)
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/753eml/iy_r-m/refs/heads/main/iyrm.lua', true))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.lua', true))()
 else
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/753eml/iy_r-m/refs/heads/main/iyrm.lua', true))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.lua', true))()
 end
