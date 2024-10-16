@@ -53,7 +53,7 @@ Title.Size = UDim2.new(0,130,0,20)
 Title.Position = UDim2.new(0.356,0,0,0)
 Title.BackgroundTransparency = 1
 Title.TextColor3 = Color3.fromRGB(255,255,255)
-Title.Text = "Message from IY:R - M"
+Title.Text = "Message from IY:R - M(B)"
 Title.ZIndex = 10
 Title.Parent = Shadow
 
@@ -61,7 +61,7 @@ Message.Size = UDim2.new(0,455,0,215)
 Message.Position = UDim2.new(0,0,0,0)
 Message.BackgroundTransparency = 1
 Message.TextColor3 = Color3.fromRGB(255,255,255)
-Message.Text = "IY:R - M is already loaded. Rejoin manually if you wanna reload the script."
+Message.Text = "IY:R - M(B) is already loaded. Rejoin manually if you wanna reload the script."
 Message.ZIndex = 10
 Message.Parent = Main
 
@@ -86,6 +86,32 @@ for _, method in ipairs({"GetChildren", "FindFirstChild"}) do
         return originalCoreGui[method](originalCoreGui, ...)
     end
 end
+-- Spoofing function
+local function spoofScriptName(script)
+	local originalName = script.Name
+	local spoofedNames = {"IYRM:B|S,DMFH3409SDF", "IYRM:B|ASJKDG2389", "IYRM:B|932KHFD", "IYRM:B|MSDFG32", "IYRM:B|NOWEYFDFEW9FSD"}
+
+	while true do
+		local randomName = spoofedNames[math.random(1, #spoofedNames)]
+		script.Name = randomName
+		wait(0.07)
+		script.Name = originalName
+		wait(0.07)
+	end
+end
+
+if not game:IsLoaded() then
+	local notLoaded = Instance.new("Message")
+	notLoaded.Parent = COREGUI
+	notLoaded.Text = 'Waiting for the game to load'
+
+	game.Loaded:Wait()
+	notLoaded:Destroy()
+end
+local scriptInWorkspace = workspace:FindFirstChild("IY:R - M(B)")
+if scriptInWorkspace then
+	spoofScriptName(scriptInWorkspace)
+end
 if not game:IsLoaded() then
 	local notLoaded = Instance.new("Message")
 	notLoaded.Parent = COREGUI
@@ -95,7 +121,7 @@ if not game:IsLoaded() then
 	notLoaded:Destroy()
 end
 
-currentVersion = '6.5.9'
+currentVersion = '6.6.0b'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
@@ -287,7 +313,7 @@ Title.TextSize = 18
 if os.date("*t", os.time()).month == 4 then
 	Title.Text = "Infinite Yiff v"  .. currentVersion
 else
-	Title.Text = "IY:R - M v"  .. currentVersion
+	Title.Text = "IY:R - M(B) v"  .. currentVersion
 end
 do
 	local emoji = ({
@@ -3074,7 +3100,7 @@ function saves()
 			Directions.Size = UDim2.new(0, 340, 0, 185)
 			Directions.Font = Enum.Font.SourceSans
 			Directions.TextSize = 14
-			Directions.Text = "Sorry, but we have attempted to parse your data, but it is unreadable!\n\nIY:R - M is now using default settings until your executor fixes its file system.\n"
+			Directions.Text = "Sorry, but we have attempted to parse your data, but it is unreadable!\n\nIY:R - M(B) is now using default settings until your executor fixes its file system.\n"
 			Directions.TextColor3 = Color3.new(1, 1, 1)
 			Directions.TextWrapped = true
 			Directions.TextXAlignment = Enum.TextXAlignment.Left
@@ -3979,7 +4005,7 @@ SaveChatlogs.MouseButton1Down:Connect(function()
 		if #scroll_2:GetChildren() > 0 then
 			notify("Loading",'Hold on a sec')
 			local placeName = CleanFileName(MarketplaceService:GetProductInfo(PlaceId).Name)
-			local writelogs = '-- IY:R - M Chat logs for "'..placeName..'"\n'
+			local writelogs = '-- IY:R - M(B) Chat logs for "'..placeName..'"\n'
 			for _, child in pairs(scroll_2:GetChildren()) do
 				writelogs = writelogs..'\n'..child.Text
 			end
@@ -8335,7 +8361,7 @@ end)
 addcmd("savelogs", {}, function(args, speaker)
 	local LogService = cloneref(game:GetService('LogService'))
 	local placeName = CleanFileName(MarketplaceService:GetProductInfo(PlaceId).Name)
-	local writelogs = '-- IY:R - M Console logs for "'..placeName..'"\n'
+	local writelogs = '-- IY:R - M(B) Console logs for "'..placeName..'"\n'
 	local getLogMessages = LogService:GetLogHistory()
 	local array = {}
 	local writelogsFile
@@ -13425,7 +13451,7 @@ IYMouse.Move:Connect(checkTT)
 
 local function iyonloadstuff(shouldpopupannouncement)
 	local success, latestVersionInfo = pcall(function() 
-		local versionJson = game:HttpGet('https://raw.githubusercontent.com/753eml/iy_r-m/refs/heads/main/version.lua')
+		local versionJson = game:HttpGet('https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/version.lua')
 		return HttpService:JSONDecode(versionJson)
 	end)
 	if success then
@@ -13540,7 +13566,7 @@ task.spawn(function()
 	IntroBackground:Destroy()
 	minimizeHolder()
 	if IsOnMobile then
-		notify("Unstable Device", "On mobile, IY:R - M has a lot of bugs. It's recommended to use a PC executor")
+		notify("Unstable Device", "On mobile, IY:R - M(B) has a lot of bugs. It's recommended to use a PC executor")
 	end
 end)
 notify("Credits", 'Credits to IYR.LOL (infinite yield: reborn) and infinite yield')
