@@ -1,6 +1,6 @@
 # Infinite Yield: Reborn - Modded Beta version
 
-[loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/autoexecsup.lua"))()](https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/autoexecsup.lua)
+### Loadstring: [loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/autoexecsup.lua"))()](https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/autoexecsup.lua)
 
 ### Changelogs:
 
