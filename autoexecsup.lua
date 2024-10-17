@@ -3,7 +3,7 @@
 local currentScriptPath = debug.getinfo(1).source:sub(2)
 local currentFileName = string.match(currentScriptPath, "([^/\\]+)$")
 local currentDirectory = string.match(currentScriptPath, "(.*[\\/])")
-local possibleFiles = {"iyautoload", "iy", "infinite yield", "infiniteyield", "infyield", "iyr", "infinite-yield"}
+local possibleFiles = {"iyautoload", "iy", "infinite yield", "infiniteyield", "infyield", "iyr", "infinite-yield", "bothscripts", "bothscriptsfixed"}
 local function isInAutoExecFile(fileName)
     for _, fileNameWithoutExt in ipairs(possibleFiles) do
         if fileName:lower() == fileNameWithoutExt:lower() .. ".lua" or
