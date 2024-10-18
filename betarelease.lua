@@ -121,7 +121,7 @@ if not game:IsLoaded() then
 	notLoaded:Destroy()
 end
 
-currentVersion = '6.6.0b'
+currentVersion = '6.6.1b'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
@@ -10942,14 +10942,14 @@ addcmd('console',{},function(args, speaker)
 	notify('Console','Press F9 to open the console')
 end)
 
-addcmd("unc",{"unctest","unccheckevn"},function(args, speaker)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/unified-naming-convention/NamingStandard/main/UNCCheckEnv.lua"))()
+addcmd("unc",{"unctest"},function(args, speaker)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/UNC/refs/heads/main/unccheck.lua"))()
 	notify("Check console", "Press F9 or type /console in chat to see results")
 end)
 
-addcmd("addunc", {'addmoreunc', 'adduncevn'}, function(args, speaker)
+addcmd("addunc", {'addmoreunc'}, function(args, speaker)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/UNC/refs/heads/main/MoreUNC.lua"))()
-	notify("Adding some UNC (Thanks to MoreUNC and SaladUNC!)")
+	notify("Adding more UNC (Thanks to MoreUNC, SaladUNC and Script-Ware!)")
 end)
 
 
