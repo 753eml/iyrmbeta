@@ -121,7 +121,7 @@ if not game:IsLoaded() then
 	notLoaded:Destroy()
 end
 
-currentVersion = '6.6.1b'
+currentVersion = '6.6.2b'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
@@ -1935,7 +1935,7 @@ TextService = cloneref(game:GetService("TextService"))
 ViewportTextBox = (function()
 
 	local funcs = {}
-	funcs.Update = function(self)
+	funcs. = function(self)
 		local cursorPos = self.TextBox.CursorPosition
 		local text = self.TextBox.Text
 		if text == "" then self.TextBox.Position = UDim2.new(0,2,0,0) return end
@@ -1991,11 +1991,11 @@ ViewportTextBox = (function()
 
 		textbox.Changed:Connect(function(prop)
 			if prop == "Text" or prop == "CursorPosition" or prop == "AbsoluteSize" then
-				obj:Update()
+				obj:()
 			end
 		end)
 
-		obj:Update()
+		obj:()
 
 		view.Parent = textbox.Parent
 		textbox.Parent = view
