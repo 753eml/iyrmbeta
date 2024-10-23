@@ -1930,86 +1930,71 @@ function create(data)
 
 	return insts[1]
 end
-
 TextService = cloneref(game:GetService("TextService"))
 ViewportTextBox = (function()
-
-	local funcs = {}
-	funcs. = function(self)
-		local cursorPos = self.TextBox.CursorPosition
-		local text = self.TextBox.Text
-		if text == "" then self.TextBox.Position = UDim2.new(0,2,0,0) return end
-		if cursorPos == -1 then return end
-
-		local cursorText = text:sub(1,cursorPos-1)
-		local pos = nil
-		local leftEnd = -self.TextBox.Position.X.Offset
-		local rightEnd = leftEnd + self.View.AbsoluteSize.X
-
-		local totalTextSize = TextService:GetTextSize(text,self.TextBox.TextSize,self.TextBox.Font,Vector2.new(999999999,100)).X
-		local cursorTextSize = TextService:GetTextSize(cursorText,self.TextBox.TextSize,self.TextBox.Font,Vector2.new(999999999,100)).X
-
-		if cursorTextSize > rightEnd then
-			pos = math.max(-2,cursorTextSize - self.View.AbsoluteSize.X + 2)
-		elseif cursorTextSize < leftEnd then
-			pos = math.max(-2,cursorTextSize-2)
-		elseif totalTextSize < rightEnd then
-			pos = math.max(-2,totalTextSize - self.View.AbsoluteSize.X + 2)
-		end
-
-		if pos then
-			self.TextBox.Position = UDim2.new(0,-pos,0,0)
-			self.TextBox.Size = UDim2.new(1,pos,1,0)
-		end
-	end
-
-	local mt = {}
-	mt.__index = funcs
-
-	local function convert(textbox)
-		local obj = setmetatable({OffsetX = 0, TextBox = textbox},mt)
-
-		local view = Instance.new("Frame")
-		view.BackgroundTransparency = textbox.BackgroundTransparency
-		view.BackgroundColor3 = textbox.BackgroundColor3
-		view.BorderSizePixel = textbox.BorderSizePixel
-		view.BorderColor3 = textbox.BorderColor3
-		view.Position = textbox.Position
-		view.Size = textbox.Size
-		view.ClipsDescendants = true
-		view.Name = textbox.Name
-		view.ZIndex = 10
-		textbox.BackgroundTransparency = 1
-		textbox.Position = UDim2.new(0,4,0,0)
-		textbox.Size = UDim2.new(1,-8,1,0)
-		textbox.TextXAlignment = Enum.TextXAlignment.Left
-		textbox.Name = "Input"
-		table.insert(text1,textbox)
-		table.insert(shade2,view)
-
-		obj.View = view
-
-		textbox.Changed:Connect(function(prop)
-			if prop == "Text" or prop == "CursorPosition" or prop == "AbsoluteSize" then
-				obj:()
-			end
-		end)
-
-		obj:()
-
-		view.Parent = textbox.Parent
-		textbox.Parent = view
-
-		return obj
-	end
-
-	return {convert = convert}
+    local funcs = {}
+    funcs.updatePosition = function(self)
+        local cursorPos = self.TextBox.CursorPosition
+        local text = self.TextBox.Text
+        if text == "" then 
+            self.TextBox.Position = UDim2.new(0,2,0,0) 
+            return 
+        end
+        if cursorPos == -1 then return end
+        local cursorText = text:sub(1, cursorPos - 1)
+        local pos = nil
+        local leftEnd = -self.TextBox.Position.X.Offset
+        local rightEnd = leftEnd + self.View.AbsoluteSize.X
+        local totalTextSize = TextService:GetTextSize(text, self.TextBox.TextSize, self.TextBox.Font, Vector2.new(999999999,100)).X
+        local cursorTextSize = TextService:GetTextSize(cursorText, self.TextBox.TextSize, self.TextBox.Font, Vector2.new(999999999,100)).X
+        if cursorTextSize > rightEnd then
+            pos = math.max(-2, cursorTextSize - self.View.AbsoluteSize.X + 2)
+        elseif cursorTextSize < leftEnd then
+            pos = math.max(-2, cursorTextSize - 2)
+        elseif totalTextSize < rightEnd then
+            pos = math.max(-2, totalTextSize - self.View.AbsoluteSize.X + 2)
+        end
+        if pos then
+            self.TextBox.Position = UDim2.new(0, -pos, 0, 0)
+            self.TextBox.Size = UDim2.new(1, pos, 1, 0)
+        end
+    end
+    local mt = {}
+    mt.__index = funcs
+    local function convert(textbox)
+        local obj = setmetatable({OffsetX = 0, TextBox = textbox}, mt)
+        local view = Instance.new("Frame")
+        view.BackgroundTransparency = textbox.BackgroundTransparency
+        view.BackgroundColor3 = textbox.BackgroundColor3
+        view.BorderSizePixel = textbox.BorderSizePixel
+        view.BorderColor3 = textbox.BorderColor3
+        view.Position = textbox.Position
+        view.Size = textbox.Size
+        view.Name = textbox.Name
+        view.ZIndex = 10
+        textbox.BackgroundTransparency = 1
+        textbox.Position = UDim2.new(0, 4, 0, 0)
+        textbox.Size = UDim2.new(1, -8, 1, 0)
+        textbox.TextXAlignment = Enum.TextXAlignment.Left
+        textbox.Name = "Input"
+        table.insert(text1, textbox)
+        table.insert(shade2, view)
+        obj.View = view
+        textbox.Changed:Connect(function(prop)
+            if prop == "Text" or prop == "CursorPosition" or prop == "AbsoluteSize" then
+                obj:updatePosition()
+            end
+        end)
+        obj:updatePosition()
+        view.Parent = textbox.Parent
+        textbox.Parent = view
+        return obj
+    end
+    return {convert = convert}
 end)()
-
 ViewportTextBox.convert(Cmdbar).View.ZIndex = 10
 ViewportTextBox.convert(Cmdbar_2).View.ZIndex = 10
 ViewportTextBox.convert(Cmdbar_3).View.ZIndex = 10
-
 IYMouse = Players.LocalPlayer:GetMouse()
 PlayerGui = Players.LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
 UserInputService = cloneref(game:GetService("UserInputService"))
