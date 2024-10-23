@@ -4602,7 +4602,7 @@ CMDs[#CMDs + 1] = {NAME = 'jobid', DESC = 'Copies the games JobId to your clipbo
 CMDs[#CMDs + 1] = {NAME = 'notifyjobid', DESC = 'Notifies you the games JobId'}
 CMDs[#CMDs + 1] = {NAME = 'rejoin / rj', DESC = 'Makes you rejoin the game'}
 CMDs[#CMDs + 1] = {NAME = 'autorejoin / autorj', DESC = 'Automatically rejoins the server if you get kicked/disconnected'}
-CMDs[#CMDs + 1] = {NAME = 'serverhop / shop', DESC = 'Teleports you to a different server'}
+CMDs[#CMDs + 1] = {NAME = ' / shop', DESC = 'Teleports you to a different server'}
 CMDs[#CMDs + 1] = {NAME = 'serverlist / slist', DESC = 'Lists you servers for you to join'}
 CMDs[#CMDs + 1] = {NAME = 'joinplayer [username / ID] [place ID]', DESC = 'Joins a specific players server'}
 CMDs[#CMDs + 1] = {NAME = 'gameteleport / gametp [place ID]', DESC = 'Joins a game by ID'}
@@ -6898,34 +6898,32 @@ addcmd("autorejoin", {"autorj"}, function(args, speaker)
 	end)
 	notify("Auto Rejoin", "Auto rejoin enabled")
 end)
-
 addcmd("serverhop", {"shop"}, function(args, speaker)
-	if httprequest then
-		local servers = {}
-		local req = httprequest({Url = string.format("https://api.iyr.lol/servers?placeId=%d", PlaceId)})
-		local body = HttpService:JSONDecode(req.Body)
-		if body and body.data then
-			for i, v in next, body.data do
-				if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= JobId then
-					table.insert(servers, 1, v.id)
-				end
-			end
-		end
+    if httprequest then
+        local servers = {}
+        local req = httprequest({Url = string.format("https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Desc&limit=250&excludeFullGames=true", PlaceId)})
+        local body = HttpService:JSONDecode(req.Body)
 
-		if #servers > 0 then
-			TeleportService:TeleportToPlaceInstance(PlaceId, servers[math.random(1, #servers)], Players.LocalPlayer)
-		else
-			return notify("Serverhop", "Couldn't find a server.")
-		end
-	else
-		notify("Incompatible Exploit", "Your exploit does not support this command (missing request)")
-	end
+        if body and body.data then
+            for i, v in next, body.data do
+                if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= JobId then
+                    table.insert(servers, 1, v.id)
+                end
+            end
+        end
+        if #servers > 0 then
+            TeleportService:TeleportToPlaceInstance(PlaceId, servers[math.random(1, #servers)], Players.LocalPlayer)
+        else
+            return notify("Serverhop", "Couldn't find a server.")
+        end
+    else
+        notify("Incompatible Exploit", "Your exploit does not support this command (missing request)")
+    end
 end)
-
 local canOpenServerIist = true
 addcmd('serverlist',{'slist'},function(args, speaker)
 	if httprequest then
-		local listreq = httprequest({Url = string.format("https://api.iyr.lol/servers?placeId=%d", PlaceId)})
+		local listreq = httprequest({Url = string.format("https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Desc&limit=250&excludeFullGames=false", PlaceId)})
 		local listbody = HttpService:JSONDecode(listreq.Body)
 		if listbody and listbody.data then
 			if not canOpenServerIist then return end
