@@ -86,7 +86,6 @@ for _, method in ipairs({"GetChildren", "FindFirstChild"}) do
         return originalCoreGui[method](originalCoreGui, ...)
     end
 end
--- Spoofing function
 local function spoofScriptName(script)
 	local originalName = script.Name
 	local spoofedNames = {"IYRM:B|S,DMFH3409SDF", "IYRM:B|ASJKDG2389", "IYRM:B|932KHFD", "IYRM:B|MSDFG32", "IYRM:B|NOWEYFDFEW9FSD"}
@@ -98,15 +97,6 @@ local function spoofScriptName(script)
 		script.Name = originalName
 		wait(0.07)
 	end
-end
-
-if not game:IsLoaded() then
-	local notLoaded = Instance.new("Message")
-	notLoaded.Parent = COREGUI
-	notLoaded.Text = 'Waiting for the game to load'
-
-	game.Loaded:Wait()
-	notLoaded:Destroy()
 end
 local scriptInWorkspace = workspace:FindFirstChild("IY:R - M(B)")
 if scriptInWorkspace then
@@ -120,8 +110,7 @@ if not game:IsLoaded() then
 	game.Loaded:Wait()
 	notLoaded:Destroy()
 end
-
-currentVersion = '6.6.2b'
+currentVersion = '6.6.3b'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
@@ -3988,9 +3977,10 @@ end
 SaveChatlogs.MouseButton1Down:Connect(function()
 	if writefileExploit() then
 		if #scroll_2:GetChildren() > 0 then
-			notify("Loading",'Hold on a sec')
-			local placeName = CleanFileName(MarketplaceService:GetProductInfo(PlaceId).Name)
-			local writelogs = '-- IY:R - M(B) Chat logs for "'..placeName..'"\n'
+			notify("Loading", 'Hold on a sec')
+			local placeInfo = MarketplaceService:GetProductInfo(PlaceId)
+			local placeName = CleanFileName(placeInfo.Name)..' ('..PlaceId..')'
+			local writelogs = '-- IY:R - M(B) Chat logs for "'..placeInfo.Name..' ('..PlaceId..')"\n'
 			for _, child in pairs(scroll_2:GetChildren()) do
 				writelogs = writelogs..'\n'..child.Text
 			end
@@ -4007,13 +3997,12 @@ SaveChatlogs.MouseButton1Down:Connect(function()
 				end
 			end
 			nameFile()
-			notify('Chat Logs','Saved chat logs to the workspace folder within your exploit folder.')
+			notify('Chat Logs', 'Saved chat logs to the workspace folder within your exploit folder.')
 		end
 	else
-		notify('Chat Logs','Your exploit does not support write file. You cannot save chat logs.')
+		notify('Chat Logs', 'Your exploit does not support write file. You cannot save chat logs.')
 	end
 end)
-
 for _, plr in pairs(Players:GetPlayers()) do
 	ChatLog(plr)
 end
@@ -4573,7 +4562,8 @@ end
 
 CMDs = {}
 CMDs[#CMDs + 1] = {NAME = 'discord / dc', DESC = 'Invite to the Discord server.'}
-CMDs[#CMDs + 1] = {NAME = 'console', DESC = 'Loads old Roblox console'}
+CMDs[#CMDs + 1] = {NAME = 'console', DESC = 'Loads Roblox console'}
+CMDs[#CMDs + 1] = {NAME = 'oldconsole', DESC = 'Loads old Roblox console'}
 CMDs[#CMDs + 1] = {NAME = 'unc / unctest / unccheckevn', DESC = 'Tests all UNC Environment'}
 CMDs[#CMDs + 1] = {NAME = 'addunc / addmoreunc / adduncevn', DESC = 'Adds some UNC Environment(s)'}
 CMDs[#CMDs + 1] = {NAME = 'execute / run / code', DESC = 'Execute a LuaU code.'}
@@ -4695,6 +4685,7 @@ CMDs[#CMDs + 1] = {NAME = '', DESC = ''}
 CMDs[#CMDs + 1] = {NAME = 'logs', DESC = 'Opens the logs GUI'}
 CMDs[#CMDs + 1] = {NAME = 'chatlogs / clogs', DESC = 'Log what people say or whisper'}
 CMDs[#CMDs + 1] = {NAME = 'joinlogs / jlogs', DESC = 'Log when people join'}
+CMDs[#CMDs + 1] = {NAME = 'antichatlogs / antichatlogger', DESC = 'Prevents Roblox from banning you for your chat messages (requires legacy chat)'}
 CMDs[#CMDs + 1] = {NAME = 'chat / say [text]', DESC = 'Makes you chat a string (possible mute bypass)'}
 CMDs[#CMDs + 1] = {NAME = 'spam [text]', DESC = 'Makes you spam the chat'}
 CMDs[#CMDs + 1] = {NAME = 'unspam', DESC = 'Turns off spam'}
@@ -4929,7 +4920,8 @@ CMDs[#CMDs + 1] = {NAME = 'droptools', DESC = 'Drops your tools'}
 CMDs[#CMDs + 1] = {NAME = 'equiptools', DESC = 'Equips every tool in your inventory at once'}
 CMDs[#CMDs + 1] = {NAME = 'unequiptools', DESC = 'Unequips every tool you are currently holding at once'}
 CMDs[#CMDs + 1] = {NAME = 'reach [num]', DESC = 'Increases the hitbox of your held tool'}
-CMDs[#CMDs + 1] = {NAME = 'unreach / noreach', DESC = 'Turns off reach'}
+CMDs[#CMDs + 1] = {NAME = 'unreach / noreach', DESC = 'Returns hitbox of your held tool to normal'}
+CMDs[#CMDs + 1] = {NAME = 'boxreach [num]', DESC = 'Increases the hitbox of your held tool, to what you set it to (box)'}
 CMDs[#CMDs + 1] = {NAME = 'grippos [X Y Z]', DESC = 'Changes your current tools grip position'}
 CMDs[#CMDs + 1] = {NAME = 'usetools [ammount] [delay]', DESC = 'Activates all tools in your backpack at the same time'}
 CMDs[#CMDs + 1] = {NAME = '', DESC = ''}
@@ -4985,6 +4977,7 @@ CMDs[#CMDs + 1] = {NAME = 'unhideallchars', DESC = 'Unhides all the characters.'
 CMDs[#CMDs + 1] = {NAME = 'emotewheelreplacement', DESC = 'Replaces the emotes wheel with a custom one'}
 CMDs[#CMDs + 1] = {NAME = 'setglobal / setg [Global Name] [true/false]', DESC = 'Set a global variable to certain value.'}
 CMDs[#CMDs + 1] = {NAME = 'feflip', DESC = 'Loads up fe backflip by Zeezy'}
+CMDs[#CMDs + 1] = {NAME = 'removeads / adblock', DESC = 'Removes ad billboards'}
 task.wait()
 
 for i = 1, #CMDs do
@@ -8031,7 +8024,16 @@ addcmd('antivoid', {"voidbooster", "voidboost"},function(args, speaker)
 	end)
 	notify("Antivoiding")
 end)
-
+OrgDestroyHeight = workspace.FallenPartsDestroyHeight
+addcmd("fakeout", {}, function(args, speaker)
+    local root = getRoot(speaker.Character)
+    local oldpos = root.CFrame
+    workspace.FallenPartsDestroyHeight = 0/1/0
+    root.CFrame = CFrame.new(Vector3.new(0, OrgDestroyHeight - 25, 0))
+    wait(1)
+    root.CFrame = oldpos
+    workspace.FallenPartsDestroyHeight = OrgDestroyHeight
+end)
 addcmd('unantivoid',{"unvoidbooster","unvoidboost"},function(args, speaker)
 	antivoidenabled = false
 	notify("No longer preventing you from falling off the void")
@@ -10900,19 +10902,18 @@ addcmd('unloopjumppower',{'unloopjp','unloopjpower'},function(args, speaker)
 		end
 	end
 end)
-
-addcmd('console',{},function(args, speaker)
-	-- Thanks wally!!
+addcmd("console", {}, function(args, speaker)
+    StarterGui:SetCore("DevConsoleVisible", true)
+end)
+addcmd('oldconsole',{},function(args, speaker)
 	notify("Loading",'Hold on a sec')
 	local _, str = pcall(function()
 		return game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/console.lua", true)
 	end)
-
 	local s, e = loadstring(str)
 	if typeof(s) ~= "function" then
 		return
 	end
-
 	local success, message = pcall(s)
 	if (not success) then
 		if printconsole then
@@ -10921,15 +10922,13 @@ addcmd('console',{},function(args, speaker)
 			printoutput(message)
 		end
 	end
-	task.wait(1)
+	wait(1)
 	notify('Console','Press F9 to open the console')
 end)
-
 addcmd("unc",{"unctest"},function(args, speaker)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/UNC/refs/heads/main/unccheck.lua"))()
 	notify("Check console", "Press F9 or type /console in chat to see results")
 end)
-
 addcmd("addunc", {'addmoreunc'}, function(args, speaker)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/UNC/refs/heads/main/MoreUNC.lua"))()
 	notify("Adding more UNC (Thanks to MoreUNC, SaladUNC and Script-Ware!)")
@@ -12171,7 +12170,25 @@ addcmd('reach',{},function(args, speaker)
 		end
 	end
 end)
-
+addcmd("boxreach", {}, function(args, speaker)
+    execCmd("unreach")
+    wait()
+    for i, v in pairs(speaker.Character:GetDescendants()) do
+        if v:IsA("Tool") then
+            local size = tonumber(args[1]) or 60
+            currentToolSize = v.Handle.Size
+            currentGripPos = v.GripPos
+            local a = Instance.new("SelectionBox")
+            a.Name = "SelectionBoxCreated"
+            a.Parent = v.Handle
+            a.Adornee = v.Handle
+            v.Handle.Massless = true
+            v.Handle.Size = Vector3.new(size, size, size)
+            v.GripPos = Vector3.new(0, 0, 0)
+            speaker.Character:FindFirstChildOfClass("Humanoid"):UnequipTools()
+        end
+    end
+end)
 addcmd('unreach',{'noreach'},function(args, speaker)
 	for i,v in pairs(speaker.Character:GetDescendants()) do
 		if v:IsA("Tool") then
@@ -12225,7 +12242,6 @@ addcmd('chatlogs',{'clogs'},function(args, speaker)
 	selectChat.BackgroundColor3 = currentShade2
 	logs:TweenPosition(UDim2.new(0, 0, 1, -265), "InOut", "Quart", 0.3, true, nil)
 end)
-
 addcmd('joinlogs',{'jlogs'},function(args, speaker)
 	chat.Visible = false
 	join.Visible = true	
@@ -12237,7 +12253,25 @@ addcmd('joinlogs',{'jlogs'},function(args, speaker)
 	selectJoin.BackgroundColor3 = currentShade2
 	logs:TweenPosition(UDim2.new(0, 0, 1, -265), "InOut", "Quart", 0.3, true, nil)
 end)
-
+addcmd("antichatlogs", {"antichatlogger"}, function(args, speaker)
+    if not isLegacyChat then
+        return notify("antichatlogs", "Game needs the legacy chat")
+    end
+    local MessagePosted, _ = pcall(function()
+        rawset(require(speaker:FindFirstChild("PlayerScripts"):FindFirstChild("ChatScript").ChatMain), "MessagePosted", {
+            ["fire"] = function(msg)
+                return msg
+            end,
+            ["wait"] = function()
+                return
+            end,
+            ["connect"] = function()
+                return
+            end
+        })
+    end)
+    notify("antichatlogs", MessagePosted and "Enabled" or "Failed to enable anti-chatlogs")
+end)
 flinging = false
 addcmd('fling',{},function(args, speaker)
 	flinging = false
@@ -12980,7 +13014,6 @@ end)
 addcmd('removeterrain',{'rterrain','noterrain'},function(args, speaker)
 	workspace:FindFirstChildOfClass('Terrain'):Clear()
 end)
-
 addcmd('clearnilinstances',{'nonilinstances','cni'},function(args, speaker)
 	if getnilinstances then
 		for i,v in pairs(getnilinstances()) do
@@ -12990,14 +13023,12 @@ addcmd('clearnilinstances',{'nonilinstances','cni'},function(args, speaker)
 		notify('Incompatible Exploit','Your exploit does not support this command (missing getnilinstances)')
 	end
 end)
-
 addcmd('destroyheight',{'dh'},function(args, speaker)
 	local dh = args[1] or -500
 	if isNumber(dh) then
 		workspace.FallenPartsDestroyHeight = dh
 	end
 end)
-
 addcmd('trip',{},function(args, speaker)
 	if speaker and speaker.Character and speaker.Character:FindFirstChildOfClass("Humanoid") and getRoot(speaker.Character) then
 		local hum = speaker.Character:FindFirstChildOfClass("Humanoid")
@@ -13006,7 +13037,22 @@ addcmd('trip',{},function(args, speaker)
 		root.Velocity = root.CFrame.LookVector * 30
 	end
 end)
-
+addcmd("removeads", {"adblock"}, function(args, speaker)
+    while wait() do
+        pcall(function()
+            for i, v in pairs(workspace:GetDescendants()) do
+                if v:IsA("PackageLink") then
+                    if v.Parent:FindFirstChild("ADpart") then
+                        v.Parent:Destroy()
+                    end
+                    if v.Parent:FindFirstChild("AdGuiAdornee") then
+                        v.Parent.Parent:Destroy()
+                    end
+                end
+            end
+        end)
+    end
+end)
 local freezingua = nil
 frozenParts = {}
 addcmd('freezeunanchored',{'freezeua'},function(args, speaker)
