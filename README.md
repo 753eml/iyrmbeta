@@ -1,4 +1,4 @@
-# Infinite Yield: Reborn - Modded Beta version
+# IY:R - M Beta(B) version
 
 ### Loadstring: [loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/autoexecsup.lua"))()](https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/autoexecsup.lua)
 
