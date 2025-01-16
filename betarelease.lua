@@ -687,7 +687,7 @@ Logo.BackgroundTransparency = 1
 Logo.BorderSizePixel = 0
 Logo.Position = UDim2.new(0, 125, 0, 127)
 Logo.Size = UDim2.new(0, 10, 0, 10)
-Logo.Image = "rbxassetid://138712079841338"
+Logo.Image = "rbxassetid://101756244595689"
 Logo.ImageTransparency = 0
 Logo.ZIndex = 10
 
