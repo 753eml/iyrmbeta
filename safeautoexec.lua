@@ -4,7 +4,7 @@ local scriptFunction = nil
 local function loadScript()
     if not fetchedScript then
         local success, result = pcall(function()
-            return game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/safeautoexec.lua")
+            return game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.lua")
         end)
         
         if success then
