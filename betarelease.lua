@@ -1,40 +1,38 @@
-if IY_LOADED and not _G.IY_DEBUG == true then
-	Shadow = Instance.new("Frame")
-Title = Instance.new("TextLabel")
-Main = Instance.new("Frame")
-Message = Instance.new("TextLabel")
-
-function randomString()
-	local length = math.random(10,20)
-	local array = {}
-	for i = 1, length do
-		array[i] = string.char(math.random(32, 126))
-	end
-	return table.concat(array)
+if IY_LOADED and not _G.IY_DEBUG then
+    local Shadow = Instance.new("Frame")
+    local Title = Instance.new("TextLabel")
+    local Main = Instance.new("Frame")
+    local Message = Instance.new("TextLabel")
+    function randomString()
+        local length = math.random(10, 20)
+        local array = {}
+        for i = 1, length do
+            array[i] = string.char(math.random(32, 126))
+        end
+        return table.concat(array)
+    end
+    local PARENT
+    local hiddenUI = get_hidden_gui or gethui
+    if hiddenUI then
+        PARENT = hiddenUI()
+        local Main = Instance.new("ScreenGui")
+        Main.Name = randomString()
+        Main.Parent = PARENT
+    elseif syn and syn.protect_gui then
+        PARENT = COREGUI
+        local Main = Instance.new("ScreenGui")
+        Main.Name = randomString()
+        syn.protect_gui(Main)
+        Main.Parent = COREGUI
+    elseif COREGUI:FindFirstChild('RobloxGui') then
+        PARENT = COREGUI.RobloxGui
+    else
+        PARENT = COREGUI
+        local Main = Instance.new("ScreenGui")
+        Main.Name = randomString()
+        Main.Parent = COREGUI
+    end
 end
-
-PARENT = nil
-if get_hidden_gui or gethui then
-	local hiddenUI = get_hidden_gui or gethui
-	local Main = Instance.new("ScreenGui")
-	Main.Name = randomString()
-	Main.Parent = hiddenUI()
-	PARENT = Main
-elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
-	local Main = Instance.new("ScreenGui")
-	Main.Name = randomString()
-	syn.protect_gui(Main)
-	Main.Parent = COREGUI
-	PARENT = Main
-elseif COREGUI:FindFirstChild('RobloxGui') then
-	PARENT = COREGUI.RobloxGui
-else
-	local Main = Instance.new("ScreenGui")
-	Main.Name = randomString()
-	Main.Parent = COREGUI
-	PARENT = Main
-end
-
 Shadow.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
 Shadow.ZIndex = 10
 Shadow.Size = UDim2.new(0,455,0,20)
