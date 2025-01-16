@@ -1,4 +1,4 @@
-# IY:R - M Beta(B) version
+# IY:R - M Beta(B)
 
 ### Loadstring: [loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/autoexecsup.lua"))()](https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/autoexecsup.lua)
 
