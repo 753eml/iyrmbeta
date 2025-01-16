@@ -11,7 +11,7 @@ if IY_LOADED and not _G.IY_DEBUG then
         end
         return table.concat(array)
     end
-    local PARENT
+    PARENT = nil
     local hiddenUI = get_hidden_gui or gethui
     if hiddenUI then
         PARENT = hiddenUI()
@@ -27,7 +27,6 @@ if IY_LOADED and not _G.IY_DEBUG then
     elseif COREGUI:FindFirstChild('RobloxGui') then
         PARENT = COREGUI.RobloxGui
     else
-        PARENT = COREGUI
         local Main = Instance.new("ScreenGui")
         Main.Name = randomString()
         Main.Parent = COREGUI
