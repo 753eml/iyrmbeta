@@ -19,7 +19,7 @@ local function loadScript()
     if scriptFunction then
         pcall(scriptFunction)
     else
-        warn("Unknown error occured, while loading the script.")
+        warn("An error occured, while loading the script.")
     end
 end
 loadScript()
