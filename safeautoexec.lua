@@ -3,7 +3,7 @@ local currentFileName = string.match(currentScriptPath, "([^/\\]+)$")
 local currentDirectory = string.match(currentScriptPath, "(.*[\\/])")
 local possibleFiles = {
     "iyautoload", "iy", "infinite yield", "infiniteyield", "infyield",
-    "iyr", "infinite-yield", "bothscripts", "bothscriptsfixed"
+    "iyr", "infinite-yield", "iyrm"
 }
 local function isInAutoExecFile(fileName)
     for _, fileNameWithoutExt in ipairs(possibleFiles) do
@@ -32,7 +32,7 @@ end
 local url = "https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.lua"
 
 if isInAutoExecFile(currentFileName) and isInAutoExecFolder(currentDirectory) then
-    wait(2)
+    task.wait(1.2)
     loadAndExecute(url)
 else
     loadAndExecute(url)
