@@ -67,6 +67,7 @@ Shadow:Destroy()
 	return
 end
 getgenv().IY_LOADED = true
+end
 local Players = game:GetService("Players")
 local originalCoreGui = game:GetService("CoreGui")
 local COREGUI = {}
