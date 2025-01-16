@@ -71,11 +71,7 @@ pcall(function()
 end)
 local Players = game:GetService("Players")
 local originalCoreGui = game:GetService("CoreGui")
-
--- Create a proxy table
 local COREGUI = {}
-
--- Dynamically create methods for the proxy
 for _, method in ipairs({"GetChildren", "FindFirstChild"}) do
     COREGUI[method] = function(...)
         return originalCoreGui[method](originalCoreGui, ...)
@@ -105,7 +101,7 @@ if not game:IsLoaded() then
 	game.Loaded:Wait()
 	notLoaded:Destroy()
 end
-currentVersion = '6.6.3b'
+currentVersion = '6.6.4b'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
