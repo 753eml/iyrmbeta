@@ -31,73 +31,70 @@ if IY_LOADED and not _G.IY_DEBUG then
         Main.Name = randomString()
         Main.Parent = COREGUI
     end
-end
-Shadow.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
-Shadow.ZIndex = 10
-Shadow.Size = UDim2.new(0,455,0,20)
-Shadow.Position = UDim2.new(0.327,0,-1,0)
-Shadow.BorderSizePixel = 0
-Shadow.Parent = PARENT
-Main.BackgroundColor3 = Color3.fromRGB(36, 36, 37)
-Main.ZIndex = 10
-Main.Size = UDim2.new(0,455,0,215)
-Main.Position = UDim2.new(0,0,1,0)
-Main.BorderSizePixel = 0
-Main.Parent = Shadow
-Title.Size = UDim2.new(0,130,0,20)
-Title.Position = UDim2.new(0.356,0,0,0)
-Title.BackgroundTransparency = 1
-Title.TextColor3 = Color3.fromRGB(255,255,255)
-Title.Text = "Message from IY:R - M(B)"
-Title.ZIndex = 10
-Title.Parent = Shadow
-Message.Size = UDim2.new(0,455,0,215)
-Message.Position = UDim2.new(0,0,0,0)
-Message.BackgroundTransparency = 1
-Message.TextColor3 = Color3.fromRGB(255,255,255)
-Message.Text = "IY:R - M(B) is already loaded. Rejoin manually if you wanna reload the script."
-Message.ZIndex = 10
-Message.Parent = Main
-Shadow:TweenPosition(UDim2.new(0.327, 0,0.327, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,0.5,true)
-task.wait(3)
-Shadow:TweenPosition(UDim2.new(0.327, 0,-1, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,0.5,true)
-task.wait(0.5)
-Shadow:Destroy()
-	return
-end
-getgenv().IY_LOADED = true
+    Shadow.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
+    Shadow.ZIndex = 10
+    Shadow.Size = UDim2.new(0,455,0,20)
+    Shadow.Position = UDim2.new(0.327,0,-1,0)
+    Shadow.BorderSizePixel = 0
+    Shadow.Parent = PARENT
+    Main.BackgroundColor3 = Color3.fromRGB(36, 36, 37)
+    Main.ZIndex = 10
+    Main.Size = UDim2.new(0,455,0,215)
+    Main.Position = UDim2.new(0,0,1,0)
+    Main.BorderSizePixel = 0
+    Main.Parent = Shadow
+    Title.Size = UDim2.new(0,130,0,20)
+    Title.Position = UDim2.new(0.356,0,0,0)
+    Title.BackgroundTransparency = 1
+    Title.TextColor3 = Color3.fromRGB(255,255,255)
+    Title.Text = "Message from IY:R - M(B)"
+    Title.ZIndex = 10
+    Title.Parent = Shadow
+    Message.Size = UDim2.new(0,455,0,215)
+    Message.Position = UDim2.new(0,0,0,0)
+    Message.BackgroundTransparency = 1
+    Message.TextColor3 = Color3.fromRGB(255,255,255)
+    Message.Text = "IY:R - M(B) is already loaded. Rejoin manually if you wanna reload the script."
+    Message.ZIndex = 10
+    Message.Parent = Main
+    Shadow:TweenPosition(UDim2.new(0.327, 0,0.327, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.5, true)
+    task.wait(3)
+    Shadow:TweenPosition(UDim2.new(0.327, 0,-1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.5, true)
+    task.wait(0.5)
+    Shadow:Destroy()
+    getgenv().IY_LOADED = true
 end
 local Players = game:GetService("Players")
 local originalCoreGui = game:GetService("CoreGui")
 local COREGUI = {}
+
 for _, method in ipairs({"GetChildren", "FindFirstChild"}) do
     COREGUI[method] = function(...)
         return originalCoreGui[method](originalCoreGui, ...)
     end
 end
 local function spoofScriptName(script)
-	local originalName = script.Name
-	local spoofedNames = {"IYRM:B|S,DMFH3409SDF", "IYRM:B|ASJKDG2389", "IYRM:B|932KHFD", "IYRM:B|MSDFG32", "IYRM:B|NOWEYFDFEW9FSD"}
-
-	while true do
-		local randomName = spoofedNames[math.random(1, #spoofedNames)]
-		script.Name = randomName
-		wait(0.07)
-		script.Name = originalName
-		wait(0.07)
-	end
+    local originalName = script.Name
+    local spoofedNames = {"IYRM:B|S,DMFH3409SDF", "IYRM:B|ASJKDG2389", "IYRM:B|932KHFD", "IYRM:B|MSDFG32", "IYRM:B|NOWEYFDFEW9FSD"}
+    while true do
+        local randomName = spoofedNames[math.random(1, #spoofedNames)]
+        script.Name = randomName
+        wait(0.07)
+        script.Name = originalName
+        wait(0.07)
+    end
 end
 local scriptInWorkspace = workspace:FindFirstChild("IY:R - M(B)")
 if scriptInWorkspace then
-	spoofScriptName(scriptInWorkspace)
+    spoofScriptName(scriptInWorkspace)
 end
 if not game:IsLoaded() then
-	local notLoaded = Instance.new("Message")
-	notLoaded.Parent = COREGUI
-	notLoaded.Text = 'Waiting for the game to load'
+    local notLoaded = Instance.new("Message")
+    notLoaded.Parent = COREGUI
+    notLoaded.Text = 'Waiting for the game to load'
 
-	game.Loaded:Wait()
-	notLoaded:Destroy()
+    game.Loaded:Wait()
+    notLoaded:Destroy()
 end
 currentVersion = '6.6.4b'
 Holder = Instance.new("Frame")
