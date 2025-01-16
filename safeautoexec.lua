@@ -1,39 +1,25 @@
-local currentScriptPath = debug.getinfo(1).source:sub(2)
-local currentFileName = string.match(currentScriptPath, "([^/\\]+)$")
-local currentDirectory = string.match(currentScriptPath, "(.*[\\/])")
-local possibleFiles = {
-    "iyautoload", "iy", "infinite yield", "infiniteyield", "infyield",
-    "iyr", "infinite-yield", "iyrm"
-}
-local function isInAutoExecFile(fileName)
-    for _, fileNameWithoutExt in ipairs(possibleFiles) do
-        if fileName:lower() == fileNameWithoutExt:lower() .. ".lua" or
-           fileName:lower() == fileNameWithoutExt:lower() .. ".luau" or
-           fileName:lower() == fileNameWithoutExt:lower() .. ".txt" then
-            return true
-        end
-    end
-    return false
-end
-local function isInAutoExecFolder(directory)
-    return string.find(directory:lower(), "autoexec") or string.find(directory:lower(), "autoexecute")
-end
-local function loadAndExecute(url)
-    local success, response = pcall(function()
-        return game:HttpGet(url)
-    end)
-    if success then
-        local scriptFunction, loadError = loadstring(response)
-        if scriptFunction then
-            local execSuccess, execError = pcall(scriptFunction)
-        end
-    end
-end
-local url = "https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.lua"
+local fetchedScript = nil
+local scriptFunction = nil
 
-if isInAutoExecFile(currentFileName) and isInAutoExecFolder(currentDirectory) then
-    task.wait(1.2)
-    loadAndExecute(url)
-else
-    loadAndExecute(url)
+local function loadScript()
+    if not fetchedScript then
+        local success, result = pcall(function()
+            return game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/safeautoexec.lua")
+        end)
+        
+        if success then
+            fetchedScript = result
+            scriptFunction = loadstring(fetchedScript)
+        else
+            warn("Failed to fetch script: " .. result)
+            return
+        end
+    end
+    
+    if scriptFunction then
+        pcall(scriptFunction)
+    else
+        warn("Unknown error occured, while loading the script.")
+    end
 end
+loadScript()
