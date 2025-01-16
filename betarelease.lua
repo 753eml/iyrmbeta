@@ -13593,6 +13593,4 @@ task.spawn(function()
 		notify("Unstable Device", "On mobile, IY:R - M(B) has a lot of bugs. It's recommended to use a PC executor")
 	end
 end)
-notify("Credits", 'Credits to IYR.LOL (infinite yield: reborn) and infinite yield')
-wait(5)
-notify("Modified by 753eml", 'lets gooo')
+notify("Credits to:", 'IYR.LOL and infyiff.github.io')
