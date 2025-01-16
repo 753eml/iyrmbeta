@@ -39,14 +39,12 @@ Shadow.Size = UDim2.new(0,455,0,20)
 Shadow.Position = UDim2.new(0.327,0,-1,0)
 Shadow.BorderSizePixel = 0
 Shadow.Parent = PARENT
-
 Main.BackgroundColor3 = Color3.fromRGB(36, 36, 37)
 Main.ZIndex = 10
 Main.Size = UDim2.new(0,455,0,215)
 Main.Position = UDim2.new(0,0,1,0)
 Main.BorderSizePixel = 0
 Main.Parent = Shadow
-
 Title.Size = UDim2.new(0,130,0,20)
 Title.Position = UDim2.new(0.356,0,0,0)
 Title.BackgroundTransparency = 1
@@ -54,7 +52,6 @@ Title.TextColor3 = Color3.fromRGB(255,255,255)
 Title.Text = "Message from IY:R - M(B)"
 Title.ZIndex = 10
 Title.Parent = Shadow
-
 Message.Size = UDim2.new(0,455,0,215)
 Message.Position = UDim2.new(0,0,0,0)
 Message.BackgroundTransparency = 1
@@ -62,7 +59,6 @@ Message.TextColor3 = Color3.fromRGB(255,255,255)
 Message.Text = "IY:R - M(B) is already loaded. Rejoin manually if you wanna reload the script."
 Message.ZIndex = 10
 Message.Parent = Main
-
 Shadow:TweenPosition(UDim2.new(0.327, 0,0.327, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,0.5,true)
 task.wait(3)
 Shadow:TweenPosition(UDim2.new(0.327, 0,-1, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,0.5,true)
@@ -70,8 +66,9 @@ task.wait(0.5)
 Shadow:Destroy()
 	return
 end
-
-pcall(function() getgenv().IY_LOADED = true end)
+pcall(function()
+    getgenv().IY_LOADED = true
+end)
 local Players = game:GetService("Players")
 local originalCoreGui = game:GetService("CoreGui")
 
