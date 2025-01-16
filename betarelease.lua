@@ -66,9 +66,7 @@ task.wait(0.5)
 Shadow:Destroy()
 	return
 end
-pcall(function()
-    getgenv().IY_LOADED = true
-end)
+getgenv().IY_LOADED = true
 local Players = game:GetService("Players")
 local originalCoreGui = game:GetService("CoreGui")
 local COREGUI = {}
