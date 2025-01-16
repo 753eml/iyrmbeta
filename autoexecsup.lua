@@ -1,25 +1,29 @@
--- For Solara V3 and other Executors
--- Please name your autoexecute file after any of the possibleFiles names, and in .txt/.lua/.luau file extensions.
-local currentScriptPath = debug.getinfo(1).source:sub(2)
-local currentFileName = string.match(currentScriptPath, "([^/\\]+)$")
-local currentDirectory = string.match(currentScriptPath, "(.*[\\/])")
-local possibleFiles = {"iyautoload", "iy", "infinite yield", "infiniteyield", "infyield", "iyr", "infinite-yield", "bothscripts", "bothscriptsfixed"}
-local function isInAutoExecFile(fileName)
-    for _, fileNameWithoutExt in ipairs(possibleFiles) do
-        if fileName:lower() == fileNameWithoutExt:lower() .. ".lua" or
-           fileName:lower() == fileNameWithoutExt:lower() .. ".luau" or
-           fileName:lower() == fileNameWithoutExt:lower() .. ".txt" then
-            return true
+local fetchedScript = nil
+local scriptFunction = nil
+
+-- Function to fetch the script and load it as fast as possible
+local function loadScriptAsync()
+    coroutine.wrap(function()
+        local success, result = pcall(function()
+            -- Fetch the entire script as fast as possible
+            return game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.lua")
+        end)
+
+        if success then
+            -- Cache the script
+            fetchedScript = result
+            scriptFunction = loadstring(fetchedScript)
+
+            -- Execute the loaded script immediately
+            if scriptFunction then
+                pcall(scriptFunction)
+            else
+                warn("Failed to load the script.")
+            end
+        else
+            warn("Failed to fetch the script: " .. result)
         end
-    end
-    return false
+    end)()
 end
-local function isInAutoExecFolder(directory)
-    return string.find(directory:lower(), "autoexec") or string.find(directory:lower(), "autoexecute")
-end
-if isInAutoExecFile(currentFileName) and isInAutoExecFolder(currentDirectory) then
-    wait(2)
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.lua', true))()
-else
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.lua', true))()
-end
+
+loadScriptAsync()
