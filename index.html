@@ -54,6 +54,11 @@
       transition: color 0.3s ease;
     }
 
+    /* Ensure code tag inside loadstring-text is also green */
+    .loadstring-text code {
+      color: #32cd32;
+    }
+
     /* Hover effect on loadstring */
     .loadstring-text:hover {
       color: #28a828; /* Darker green when hovering over */
@@ -89,24 +94,16 @@
     
     <!-- Loadstring Text - Clickable to copy -->
     <p class="loadstring-text" id="loadstring-text">Loadstring: <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua"))()</code></p>
-
-    <!-- Button to go to the link -->
-    <button class="button" onclick="window.location.href='https://753eml.github.io';">Go to Website</button>
+    <button class="button" onclick="window.location.href='https://753eml.github.io/iy_r-m';">Non-beta version</button>
   </div>
-
   <script>
-    // Clipboard copy functionality
     document.getElementById("loadstring-text").addEventListener("click", function() {
-      // Create a temporary input element to copy the loadstring text
       var tempInput = document.createElement("input");
       tempInput.value = "loadstring(game:HttpGet('https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua'))()";
       document.body.appendChild(tempInput);
       tempInput.select();
       document.execCommand("copy");
       document.body.removeChild(tempInput);
-      
-      // Optional: Provide feedback on successful copy
-      alert("Loadstring copied to clipboard!");
     });
   </script>
 
