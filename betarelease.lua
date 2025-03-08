@@ -54,7 +54,7 @@ if IY_LOADED and not _G.IY_DEBUG then
     Message.Position = UDim2.new(0,0,0,0)
     Message.BackgroundTransparency = 1
     Message.TextColor3 = Color3.fromRGB(255,255,255)
-    Message.Text = "IY:R - M(B) is already loaded. Rejoin manually if you wanna reload the script."
+    Message.Text = "Already loaded!"
     Message.ZIndex = 10
     Message.Parent = Main
     Shadow:TweenPosition(UDim2.new(0.327, 0,0.327, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.5, true)
@@ -75,7 +75,7 @@ for _, method in ipairs({"GetChildren", "FindFirstChild"}) do
 end
 local function spoofScriptName(script)
     local originalName = script.Name
-    local spoofedNames = {"IYRM:B|S,DMFH3409SDF", "IYRM:B|ASJKDG2389", "IYRM:B|932KHFD", "IYRM:B|MSDFG32", "IYRM:B|NOWEYFDFEW9FSD"}
+    local spoofedNames = {"H34HR0A9SDF", "I6SJKDG2389", "-KSD32KHFD", "56GDMSDFG32", "NOWEYFDFEW9FSD"}
     while true do
         local randomName = spoofedNames[math.random(1, #spoofedNames)]
         script.Name = randomName
@@ -6405,7 +6405,7 @@ local TeleportCheck = false
 Players.LocalPlayer.OnTeleport:Connect(function(State)
 	if KeepInfYield and (not TeleportCheck) and queueteleport then
 		TeleportCheck = true
-		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/753eml/iyrm/refs/heads/main/iyrm.lua',true))()")
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.lua',true))()")
 	end
 end)
 
