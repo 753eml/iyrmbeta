@@ -50,6 +50,29 @@
       font-size: 1rem;
       color: #f39c12;
       margin-top: 20px;
+      cursor: pointer; /* Indicate that it's clickable */
+      transition: color 0.3s ease;
+    }
+
+    /* Hover effect on loadstring */
+    .loadstring-text:hover {
+      color: #d88e00; /* Darker gold when hovering over */
+    }
+
+    /* Button styling */
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #32cd32; /* Bright green background */
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #28a828; /* Darker green on hover */
     }
 
   </style>
@@ -59,23 +82,30 @@
   <!-- Main Content -->
   <div class="content">
     <h1>Infinite Yield: Reborn - Modified</h1>
-    <p>For more info, visit my <a href="https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua" class="link" target="_blank">GitHub repo</a>.</p>
     
-    <!-- GitHub Repo Link -->
-    <a href="https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua" class="link" target="_blank">
-      GitHub Repository
-    </a>
+    <p>For more info, visit my <a href="https://753eml.github.io" class="link" target="_blank">main repo</a>.</p>
     
-    <!-- Additional Link to 753eml.github.io -->
-    <p><a href="https://753eml.github.io" class="link" target="_blank">Visit 753eml.github.io</a></p>
+    <!-- Loadstring Text - Clickable to copy -->
+    <p class="loadstring-text" id="loadstring-text">Loadstring: <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua"))()</code></p>
 
-    <!-- Loadstring inside paragraph -->
-    <p class="loadstring-text">Loadstring: <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua"))()</code></p>
+    <!-- Button to go to the link -->
+    <button class="button" onclick="window.location.href='https://753eml.github.io';">Go to Website</button>
   </div>
 
-  <!-- Embed the Loadstring -->
   <script>
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua"))()
+    // Clipboard copy functionality
+    document.getElementById("loadstring-text").addEventListener("click", function() {
+      // Create a temporary input element to copy the loadstring text
+      var tempInput = document.createElement("input");
+      tempInput.value = "loadstring(game:HttpGet('https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua'))()";
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      
+      // Optional: Provide feedback on successful copy
+      alert("Loadstring copied to clipboard!");
+    });
   </script>
 
 </body>
