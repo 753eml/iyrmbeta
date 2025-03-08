@@ -3,19 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IY:R - M Beta(B)</title>
+    <title>Chill Waves</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        body {
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: relative;
+        }
+        h1 {
+            font-size: 50px;
+            color: #fff;
+        }
+        p {
+            font-size: 18px;
+            color: #bbb;
+        }
+        .wave {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: url('https://www.transparenttextures.com/patterns/waves.png') repeat-x;
+            animation: wave-animation 15s infinite linear;
+        }
+        @keyframes wave-animation {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>IY:R - M Beta(B)</h1>
-
-    <p>Loadstring: 
-        <a href="https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua" target="_blank">
-            [loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua"))()]
-        </a>
-    </p>
-
-    <p>For other stuff, visit: 
-        <a href="https://753eml.github.io" target="_blank">https://753eml.github.io</a>
-    </p>
+    <div>
+        <h1>Welcome to Chill Waves</h1>
+        <p>Relax, enjoy the waves.</p>
+    </div>
+    <div class="wave"></div>
 </body>
 </html>
