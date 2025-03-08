@@ -12,42 +12,25 @@
       background-color: #121212; /* Dark theme */
       color: #fff;
       height: 100vh;
+      background-image: url('your-image-url-here.jpg'); /* Replace with your static image */
+      background-size: cover; /* Make sure the image covers the entire background */
+      background-position: top center; /* Position the image with top space */
       overflow: hidden;
-      position: relative;
-    }
-
-    /* Wave animation */
-    .wave {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 200px;
-      background: url('https://www.transparenttextures.com/patterns/vertical-rhythm.png') repeat-x;
-      animation: waveAnimation 10s linear infinite;
-    }
-
-    @keyframes waveAnimation {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
     }
 
     /* Main content */
     .content {
       position: absolute;
-      top: 50%;
+      top: 10%; /* Move the text closer to the top */
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       text-align: center;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem; /* Larger heading */
       margin-bottom: 20px;
+      color: #32cd32; /* Subtle bright green */
     }
 
     .link {
@@ -59,20 +42,32 @@
     .link:hover {
       text-decoration: underline;
     }
+
+    /* Style for the Loadstring text */
+    .loadstring-text {
+      font-size: 1rem;
+      color: #f39c12;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-
-  <!-- Wave Background -->
-  <div class="wave"></div>
 
   <!-- Main Content -->
   <div class="content">
     <h1>Welcome to My Website</h1>
     <p>For more info, visit my GitHub repo.</p>
+    
+    <!-- GitHub Repo Link -->
     <a href="https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua" class="link" target="_blank">
       GitHub Repository
     </a>
+    
+    <!-- Additional Link to 753eml.github.io -->
+    <p><a href="https://753eml.github.io" class="link" target="_blank">Visit 753eml.github.io</a></p>
+
+    <!-- Loadstring visible on page -->
+    <p class="loadstring-text">Loadstring: <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua"))()</code></p>
   </div>
 
   <!-- Embed the Loadstring -->
