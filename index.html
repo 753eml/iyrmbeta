@@ -9,90 +9,69 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #121212; /* Dark theme */
+      background-color: #121212;
       color: #fff;
       height: 100vh;
-      background-image: url('https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/darkforest.jpg'); /* Your image */
-      background-size: cover; /* Make sure the image covers the entire background */
-      background-position: top center; /* Position the image with top space */
+      background-image: url('https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/darkforest.jpg');
+      background-size: cover;
+      background-position: top center;
       overflow: hidden;
     }
-
-    /* Main content */
     .content {
       position: absolute;
-      top: 10%; /* Move the text closer to the top */
+      top: 10%;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
     }
-
     h1 {
-      font-size: 2.5rem; /* Larger heading */
+      font-size: 2.5rem;
       margin-bottom: 20px;
-      color: #32cd32; /* Subtle bright green */
+      color: #32cd32;
     }
-
     .link {
       font-size: 1.2rem;
       color: #1e90ff;
       text-decoration: none;
       transition: color 0.3s ease;
     }
-
-    /* Hover effect: Make the link 30% darker */
     .link:hover {
-      color: #1569c7; /* Darker blue for the hover effect */
+      color: #1569c7;
     }
-
-    /* Style for the Loadstring text */
     .loadstring-text {
       font-size: 1rem;
-      color: #32cd32; /* Green color for loadstring */
+      color: #32cd32;
       margin-top: 20px;
-      cursor: pointer; /* Indicate that it's clickable */
+      cursor: pointer;
       transition: color 0.3s ease;
     }
-
-    /* Ensure code tag inside loadstring-text is also green */
     .loadstring-text code {
       color: #32cd32;
     }
-
-    /* Hover effect on loadstring */
     .loadstring-text:hover {
-      color: #28a828; /* Darker green when hovering over */
+      color: #28a828;
     }
-
-    /* Button styling (outlined, green text, transparent background) */
     .button {
       margin-top: 20px;
       padding: 10px 20px;
       font-size: 1rem;
-      background-color: transparent; /* Transparent background */
-      color: #32cd32; /* Green text */
-      border: 2px solid #32cd32; /* Green border */
+      background-color: transparent;
+      color: #32cd32;
+      border: 2px solid #32cd32;
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
-
-    /* Hover effect on button */
     .button:hover {
-      background-color: #32cd32; /* Green background */
-      color: white; /* White text when hovered */
+      background-color: #32cd32;
+      color: white; 
     }
-
   </style>
 </head>
 <body>
-
-  <!-- Main Content -->
   <div class="content">
     <h1>Infinite Yield: Reborn - Modified</h1>
     <p>Unfortunately, the source I used to create this, has halted development of their product (<a href="IYR.LOL" class="link" target="_blank">Infinite Yield: Reborn</a>).</p>
-    <p>For more info, visit my <a href="https://753eml.github.io" class="link" target="_blank">main repo</a>.</p>
-    
-    <!-- Loadstring Text - Clickable to copy -->
+    <p>General things at <a href="https://753eml.github.io" class="link" target="_blank">my main repo</a>.</p>
     <p class="loadstring-text" id="loadstring-text">Loadstring: <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/Quickload.lua"))()</code></p>
     <button class="button" onclick="window.location.href='https://753eml.github.io/iy_r-m';">Non-beta version</button>
   </div>
