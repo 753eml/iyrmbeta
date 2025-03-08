@@ -48,7 +48,7 @@
     /* Style for the Loadstring text */
     .loadstring-text {
       font-size: 1rem;
-      color: #f39c12;
+      color: #32cd32; /* Green color for loadstring */
       margin-top: 20px;
       cursor: pointer; /* Indicate that it's clickable */
       transition: color 0.3s ease;
@@ -56,23 +56,25 @@
 
     /* Hover effect on loadstring */
     .loadstring-text:hover {
-      color: #d88e00; /* Darker gold when hovering over */
+      color: #28a828; /* Darker green when hovering over */
     }
 
-    /* Button styling */
+    /* Button styling (outlined, green text, transparent background) */
     .button {
       margin-top: 20px;
       padding: 10px 20px;
       font-size: 1rem;
-      background-color: #32cd32; /* Bright green background */
-      color: white;
-      border: none;
+      background-color: transparent; /* Transparent background */
+      color: #32cd32; /* Green text */
+      border: 2px solid #32cd32; /* Green border */
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    /* Hover effect on button */
     .button:hover {
-      background-color: #28a828; /* Darker green on hover */
+      background-color: #32cd32; /* Green background */
+      color: white; /* White text when hovered */
     }
 
   </style>
