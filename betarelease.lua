@@ -1,3 +1,18 @@
+local filename = "iyrmaudi.png"
+local url = "https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/iyrmaudi.png"
+if not isfile(filename) then
+    local response = http_request({
+        Url = url,
+        Method = "GET"
+    })
+
+    if response.Success or response.StatusCode == 200 then
+        writefile(filename, response.Body)
+        print("Downloaded logo")
+    else
+        warn("Failed, status code:", response.StatusCode)
+    end
+end
 if IY_LOADED and not _G.IY_DEBUG then
     local Shadow = Instance.new("Frame")
     local Title = Instance.new("TextLabel")
@@ -286,7 +301,7 @@ Title.Size = UDim2.new(0, 250, 0, 20)
 Title.Font = Enum.Font.SourceSans
 Title.TextSize = 18
 if os.date("*t", os.time()).month == 4 then
-	Title.Text = "Infinite Yiff v"  .. currentVersion
+	Title.Text = "fine man v"  .. currentVersion
 else
 	Title.Text = "IY:R - M(B) v"  .. currentVersion
 end
@@ -687,7 +702,7 @@ Logo.BackgroundTransparency = 1
 Logo.BorderSizePixel = 0
 Logo.Position = UDim2.new(0, 125, 0, 127)
 Logo.Size = UDim2.new(0, 10, 0, 10)
-Logo.Image = "rbxassetid://101756244595689"
+Logo.Image = getcustomasset("iyrmaudi.png")
 Logo.ImageTransparency = 0
 Logo.ZIndex = 10
 
@@ -10944,13 +10959,9 @@ addcmd("execute", {"run", "code"}, function(args, speaker)
 end)
 
 addcmd('explorer', {'dex'}, function(args, speaker)
-	notify('Loading', 'Hold on a sec')
+	notify('Loading', 'Give it a bit of time')
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/Bypasses.lua", true))()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
-end)
-
-addcmd('secureexplorer', {'securedex', "bypasseddex"}, function(args, speaker)
-	notify('Bypassing (Loading)', 'Hold on a sec')
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
 end)
 
 addcmd('olddex', {'odex'}, function(args, speaker)
@@ -10973,7 +10984,6 @@ addcmd('olddex', {'odex'}, function(args, speaker)
 	local function Load(Obj, Url)
 		local function GiveOwnGlobals(Func, Script)
 			-- Fix for this edit of dex being poorly made
-			-- I (Alex) would like to commemorate whoever added this dex in somehow finding the worst dex to ever exist
 			local Fenv, RealFenv, FenvMt = {}, {
 				script = Script,
 				getupvalue = function(a, b)
