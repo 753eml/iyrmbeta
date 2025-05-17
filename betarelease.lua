@@ -6938,9 +6938,8 @@ if httprequest then
     end
 else
     notify("Incompatible Exploit", "Your exploit does not support this command (missing request)")
-end)
 end
-
+end)
 addcmd('joinplayer',{'joinp'},function(args, speaker)
 	local retries = 0
 	function ToServer(User,Place)	
