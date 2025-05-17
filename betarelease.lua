@@ -100,7 +100,7 @@ end
 local function spoofScriptName(script)
     while true do
         script.Name = randomString()
-        task.wait(0.07)
+        task.wait(0.18)
     end
 end
 local scriptInWorkspace = workspace:FindFirstChild("IY:R - M(B)")
@@ -110,7 +110,7 @@ end
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-currentVersion = '6.6.6b'
+currentVersion = '6.6.6b😈'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
@@ -300,7 +300,7 @@ Title.Size = UDim2.new(0, 250, 0, 20)
 Title.Font = Enum.Font.SourceSans
 Title.TextSize = 18
 if os.date("*t", os.time()).month == 4 then
-	Title.Text = "fine man v"  .. currentVersion
+	Title.Text = "sir boomer v"  .. currentVersion
 else
 	Title.Text = "IY:R - M(B) v"  .. currentVersion
 end
