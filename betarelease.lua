@@ -21,10 +21,9 @@ if IY_LOADED and not _G.IY_DEBUG then
     local Main = Instance.new("Frame")
     local Message = Instance.new("TextLabel")
     local function randomString(length)
-    length = math.random(10, 20)
+    length = math.random(18, 30)
     local chars = {}
     for i = 1, length do
-        -- Printable ASCII chars from 33 (!) to 126 (~)
         chars[i] = string.char(math.random(33, 126))
     end
     return table.concat(chars)
