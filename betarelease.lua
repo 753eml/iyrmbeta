@@ -110,7 +110,7 @@ end
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-currentVersion = '6.6.5b'
+currentVersion = '6.6.6b'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
@@ -6877,27 +6877,70 @@ addcmd("autorejoin", {"autorj"}, function(args, speaker)
 	notify("Auto Rejoin", "Auto rejoin enabled")
 end)
 addcmd("serverhop", {"shop"}, function(args, speaker)
-    if httprequest then
-        local servers = {}
-        local req = httprequest({Url = string.format("https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Desc&limit=250&excludeFullGames=true", PlaceId)})
-        local body = HttpService:JSONDecode(req.Body)
+if httprequest then
+    local HttpService = game:GetService("HttpService")
+    local TeleportService = game:GetService("TeleportService")
+    local Players = game:GetService("Players")
+    local PlaceId = game.PlaceId
+    local JobId = game.JobId
 
-        if body and body.data then
-            for i, v in next, body.data do
-                if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= JobId then
-                    table.insert(servers, 1, v.id)
+    local servers = {}
+    local cursor = nil
+    local maxPages = 15  -- 🔧 Search up to 15 pages (1500 servers max)
+
+    for page = 1, maxPages do
+        local url = string.format("https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true", PlaceId)
+        if cursor then
+            url = url .. "&cursor=" .. cursor
+        end
+
+        local success, response = pcall(function()
+            return httprequest({Url = url})
+        end)
+
+        if success and response then
+            local body = HttpService:JSONDecode(response.Body)
+
+            if body and body.data then
+                print("📄 Page " .. page .. ": Received " .. #body.data .. " servers")
+
+                for i, v in next, body.data do
+                    if type(v) == "table"
+                        and tonumber(v.playing)
+                        and tonumber(v.maxPlayers)
+                        and v.playing < v.maxPlayers
+                        and v.id ~= JobId then
+                        table.insert(servers, v.id)
+                        print(string.format("✅ Server %d: %d/%d | ID: %s", i, v.playing, v.maxPlayers, v.id))
+                    else
+                        print(string.format("⛔ Server %d not valid: %d/%d | Same ID: %s", i, v.playing or 0, v.maxPlayers or 0, tostring(v.id == JobId)))
+                    end
                 end
             end
-        end
-        if #servers > 0 then
-            TeleportService:TeleportToPlaceInstance(PlaceId, servers[math.random(1, #servers)], Players.LocalPlayer)
+
+            cursor = body.nextPageCursor
+            if not cursor then break end -- No more pages to request
+            wait(0.5) -- Prevent spam rate limits
+
         else
-            return notify("Serverhop", "Couldn't find a server.")
+            warn("❌ Failed to fetch servers")
+            break
         end
-    else
-        notify("Incompatible Exploit", "Your exploit does not support this command (missing request)")
+
+        if #servers > 0 then break end -- Stop early if server found
     end
-end)
+
+    if #servers > 0 then
+        local chosen = servers[math.random(1, #servers)]
+        print("🔁 Teleporting to server:", chosen)
+        TeleportService:TeleportToPlaceInstance(PlaceId, chosen, Players.LocalPlayer)
+    else
+        notify("Serverhop", "Couldn't find a suitable server after checking 15 pages.")
+    end
+else
+    notify("Incompatible Exploit", "Your exploit does not support this command (missing request)")
+end
+
 local canOpenServerIist = true
 addcmd('serverlist',{'slist'},function(args, speaker)
 	if httprequest then
