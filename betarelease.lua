@@ -1,3 +1,6 @@
+if getgenv().IY_LOADED then
+	return
+end
 if not getgenv().IY_LOADED and not _G.IY_DEBUG then
 getgenv().IY_LOADED = true
 local filename = "iyrmaudi.png"
