@@ -111,7 +111,7 @@ if not game:IsLoaded() then
     game.Loaded:Wait()
     notLoaded:Destroy()
 end
-currentVersion = '6.6.4b'
+currentVersion = '6.6.5b'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
