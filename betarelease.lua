@@ -1,3 +1,5 @@
+if not getgenv().IY_LOADED and not _G.IY_DEBUG then
+getgenv().IY_LOADED = true
 local filename = "iyrmaudi.png"
 local url = "https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/iyrmaudi.png"
 if not isfile(filename) then
@@ -5,7 +7,6 @@ if not isfile(filename) then
         Url = url,
         Method = "GET"
     })
-
     if response.Success or response.StatusCode == 200 then
         writefile(filename, response.Body)
         print("Downloaded logo")
@@ -13,7 +14,6 @@ if not isfile(filename) then
         warn("Failed, status code:", response.StatusCode)
     end
 end
-if IY_LOADED and not _G.IY_DEBUG then
     local originalName = "IY:R - M(B)"
     local scriptInWorkspace = workspace:FindFirstChild(originalName)
     local Shadow = Instance.new("Frame")
@@ -84,7 +84,6 @@ end
     Shadow:TweenPosition(UDim2.new(0.327, 0,-1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.5, true)
     task.wait(0.5)
     Shadow:Destroy()
-    getgenv().IY_LOADED = true
 end
 local Players = game:GetService("Players")
 local originalCoreGui = game:GetService("CoreGui")
