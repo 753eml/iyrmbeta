@@ -14,18 +14,21 @@ if not isfile(filename) then
     end
 end
 if IY_LOADED and not _G.IY_DEBUG then
+    local originalName = "IY:R - M(B)"
+    local scriptInWorkspace = workspace:FindFirstChild(originalName)
     local Shadow = Instance.new("Frame")
     local Title = Instance.new("TextLabel")
     local Main = Instance.new("Frame")
     local Message = Instance.new("TextLabel")
-    function randomString()
-        local length = math.random(10, 20)
-        local array = {}
-        for i = 1, length do
-            array[i] = string.char(math.random(32, 126))
-        end
-        return table.concat(array)
+    local function randomString(length)
+    length = math.random(10, 20)
+    local chars = {}
+    for i = 1, length do
+        -- Printable ASCII chars from 33 (!) to 126 (~)
+        chars[i] = string.char(math.random(33, 126))
     end
+    return table.concat(chars)
+end
     PARENT = nil
     local hiddenUI = get_hidden_gui or gethui
     if hiddenUI then
@@ -45,6 +48,11 @@ if IY_LOADED and not _G.IY_DEBUG then
         local Main = Instance.new("ScreenGui")
         Main.Name = randomString()
         Main.Parent = COREGUI
+    end
+    if scriptInWorkspace then
+	coroutine.wrap(spoofScriptName)(scriptInWorkspace)
+    else
+	warn("Script with name '" .. originalName .. "' not found in workspace.")
     end
     Shadow.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
     Shadow.ZIndex = 10
@@ -89,14 +97,9 @@ for _, method in ipairs({"GetChildren", "FindFirstChild"}) do
     end
 end
 local function spoofScriptName(script)
-    local originalName = script.Name
-    local spoofedNames = {"H34HR0A9SDF", "I6SJKDG2389", "-KSD32KHFD", "56GDMSDFG32", "NOWEYFDFEW9FSD"}
     while true do
-        local randomName = spoofedNames[math.random(1, #spoofedNames)]
-        script.Name = randomName
-        wait(0.07)
-        script.Name = originalName
-        wait(0.07)
+        script.Name = randomString()
+        task.wait(0.07)
     end
 end
 local scriptInWorkspace = workspace:FindFirstChild("IY:R - M(B)")
@@ -104,12 +107,7 @@ if scriptInWorkspace then
     spoofScriptName(scriptInWorkspace)
 end
 if not game:IsLoaded() then
-    local notLoaded = Instance.new("Message")
-    notLoaded.Parent = COREGUI
-    notLoaded.Text = 'Waiting for the game to load'
-
     game.Loaded:Wait()
-    notLoaded:Destroy()
 end
 currentVersion = '6.6.5b'
 Holder = Instance.new("Frame")
