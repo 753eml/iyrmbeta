@@ -1,4 +1,4 @@
 {
-	"Version": "6.6.6b😈",
+	"Version": "6.7",
 	"Announcement": ""
 }
