@@ -28,7 +28,8 @@ end
     local chars = {}
     for i = 1, length do
         chars[i] = string.char(math.random(33, 126))
-    end
+    	task.wait()
+	end
     return table.concat(chars)
 end
     PARENT = nil
