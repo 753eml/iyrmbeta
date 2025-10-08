@@ -5,7 +5,7 @@ end)
 if success and script then
 	local execSuccess, execError = pcall(script)
 	if not execSuccess then
-		print("Error: " .. execError
+		print("Error: " .. execError)
 	end
 else
 	print("Error loading script " .. (script or "unknown"))
