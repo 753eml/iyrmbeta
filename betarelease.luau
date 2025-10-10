@@ -54,8 +54,6 @@ end
     end
     if scriptInWorkspace then
 	coroutine.wrap(spoofScriptName)(scriptInWorkspace)
-    else
-	warn("Script with name '" .. originalName .. "' not found in workspace.")
     end
     Shadow.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
     Shadow.ZIndex = 10
@@ -103,10 +101,6 @@ local function spoofScriptName(script)
         script.Name = randomString()
         task.wait(0.18)
     end
-end
-local scriptInWorkspace = workspace:FindFirstChild("IY:R - M(B)")
-if scriptInWorkspace then
-    spoofScriptName(scriptInWorkspace)
 end
 if not game:IsLoaded() then
     game.Loaded:Wait()
