@@ -9426,10 +9426,13 @@ end)
 
 addcmd('norender',{},function(args, speaker)
 	RunService:Set3dRenderingEnabled(false)
+	local g=Instance.new("ScreenGui",game.Players.LocalPlayer.PlayerGui); g.Name="BlackScreen"; g.IgnoreGuiInset=true; g.DisplayOrder=9999; local f=Instance.new("Frame",g"); f.Size=UDim2.new(1,0,1,0); f.Position=UDim2.new(0,0,0,0); f.BackgroundColor3=Color3.new(0,0,0); f.BorderSizePixel=0
+
 end)
 
 addcmd('render',{},function(args, speaker)
 	RunService:Set3dRenderingEnabled(true)
+	g:Destroy()
 end)
 
 addcmd('2022materials',{'use2022materials'},function(args, speaker)
