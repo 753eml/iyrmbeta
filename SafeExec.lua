@@ -1,5 +1,5 @@
 local success, script = pcall(function()
-	return loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.lua"))()
+	return loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/betarelease.luau"))()
 end)
 
 if success and script then
