@@ -1,6 +1,3 @@
-if getgenv().IY_LOADED then
-	return
-end
 if not getgenv().IY_LOADED and not _G.IY_DEBUG then
 getgenv().IY_LOADED = true
 local filename = "iyrmaudi.png"
@@ -105,7 +102,7 @@ end
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-currentVersion = '6.7b'
+currentVersion = '6.7.1b'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
@@ -4605,10 +4602,9 @@ CMDs[#CMDs + 1] = {NAME = 'brightness [num] (CLIENT)', DESC = 'Changes the brigh
 CMDs[#CMDs + 1] = {NAME = 'light [radius] [brightness] (CLIENT)', DESC = 'Gives your player dynamic light'}
 CMDs[#CMDs + 1] = {NAME = 'age [player]', DESC = 'Tells you the age of a player'}
 CMDs[#CMDs + 1] = {NAME = 'userid / id [player]', DESC = 'Notifies a players user ID'}
-CMDs[#CMDs + 1] = {NAME = 'bang [player] [speed]', DESC = 'owo'}
 CMDs[#CMDs + 1] = {NAME = 'carpet [player]', DESC = 'Be someones carpet'}
 CMDs[#CMDs + 1] = {NAME = 'friend [player]', DESC = 'Sends a friend request to certain players'}
-CMDs[#CMDs + 1] = {NAME = 'orbit [player] [speed] [distance]', DESC = 'Makes your character orbit around a player with an optional speed and an optional distance'}
+CMDs[#CMDs + 1] = {NAME = 'orbit [player] [distance] [speed]', DESC = 'Makes your character orbit around a player with an optional speed and an optional distance'}
 CMDs[#CMDs + 1] = {NAME = 'stareat / stare [player]', DESC = 'Stare / look at a player'}
 CMDs[#CMDs + 1] = {NAME = 'rolewatch [group id] [role name]', DESC = 'Notify if someone from a watched group joins the server'}
 CMDs[#CMDs + 1] = {NAME = 'staffwatch', DESC = 'Notify if a staff member of the game joins the server'}
@@ -4676,7 +4672,6 @@ CMDs[#CMDs + 1] = {NAME = 'unalignmentkeys / noalignmentkeys', DESC = 'Disables 
 CMDs[#CMDs + 1] = {NAME = 'ctrllock', DESC = 'Binds Shiftlock to LeftControl'}
 CMDs[#CMDs + 1] = {NAME = 'unctrllock', DESC = 'Re-binds Shiftlock to LeftShift'}
 CMDs[#CMDs + 1] = {NAME = 'unlistento', DESC = 'Disables listento'}
-CMDs[#CMDs + 1] = {NAME = 'jerk', DESC = 'Makes you jork it'}
 CMDs[#CMDs + 1] = {NAME = 'unsuspendvc', DESC = 'Unsuspends you from voice chat'}
 CMDs[#CMDs + 1] = {NAME = 'discord / dc', DESC = 'Invite to the Discord server.'}
 CMDs[#CMDs + 1] = {NAME = 'oldconsole', DESC = 'Loads old Roblox console'}
@@ -4754,7 +4749,6 @@ CMDs[#CMDs + 1] = {NAME = 'tweenspeed / tspeed [num]', DESC = 'Sets how fast all
 CMDs[#CMDs + 1] = {NAME = 'vehiclegoto / vgoto [player]', DESC = 'Go to a player while in a vehicle'}
 CMDs[#CMDs + 1] = {NAME = 'loopgoto [player] [distance] [delay]', DESC = 'Loop teleport to a player'}
 CMDs[#CMDs + 1] = {NAME = 'unloopgoto', DESC = 'Stops teleporting you to a player'}
-CMDs[#CMDs + 1] = {NAME = 'orbit [player] [distance] [speed]', DESC = 'Orbits a player'}
 CMDs[#CMDs + 1] = {NAME = 'unorbit', DESC = 'Stops orbiting a player'}
 CMDs[#CMDs + 1] = {NAME = 'pulsetp / ptp [player] [seconds]', DESC = 'Teleports you to a player for a specified ammount of time'}
 CMDs[#CMDs + 1] = {NAME = 'clientbring / cbring [player] (CLIENT)', DESC = 'Bring a player'}
@@ -4861,9 +4855,6 @@ CMDs[#CMDs + 1] = {NAME = 'copyname / copyuser [player]', DESC = 'Copies a playe
 CMDs[#CMDs + 1] = {NAME = 'copyuserid / copyid [player]', DESC = 'Copies a players user ID to your clipboard'}
 CMDs[#CMDs + 1] = {NAME = 'appearanceid / aid [player]', DESC = 'Notifies a players appearance ID'}
 CMDs[#CMDs + 1] = {NAME = 'copyappearanceid / caid [player]', DESC = 'Copies a players appearance ID to your clipboard'}
-CMDs[#CMDs + 1] = {NAME = 'bang / rape [player] [speed]', DESC = 'Fucks someone (NSFW)'}
-CMDs[#CMDs + 1] = {NAME = 'facebang / facefuck / facerape [player] [speed]', DESC = 'Fucks someone in the face (NSFW)'}
-CMDs[#CMDs + 1] = {NAME = 'unbang / unrape / unfacefuck / unfacebang / unfacerape', DESC = 'Stops the rape.'}
 CMDs[#CMDs + 1] = {NAME = 'uncarpet', DESC = 'Undoes carpet'}
 CMDs[#CMDs + 1] = {NAME = 'unfriend [player]', DESC = 'Unfriends certain players'}
 CMDs[#CMDs + 1] = {NAME = 'headsit [player]', DESC = 'Sit on a players head'}
@@ -5004,7 +4995,6 @@ CMDs[#CMDs + 1] = {NAME = 'uninfinity', DESC = ''}
 CMDs[#CMDs + 1] = {NAME = 'hidechar [player]', DESC = 'Hides the character from your client.'}
 CMDs[#CMDs + 1] = {NAME = 'unhidechar [player]', DESC = 'Stops hiding the character from your client.'}
 CMDs[#CMDs + 1] = {NAME = 'unhideallchars', DESC = 'Unhides all the characters.'}
-CMDs[#CMDs + 1] = {NAME = 'emotewheelreplacement', DESC = 'Replaces the emotes wheel with a custom one'}
 CMDs[#CMDs + 1] = {NAME = 'setglobal / setg [Global Name] [true/false]', DESC = 'Set a global variable to certain value.'}
 CMDs[#CMDs + 1] = {NAME = 'feflip', DESC = 'Loads up fe backflip by Zeezy'}
 CMDs[#CMDs + 1] = {NAME = 'removeads / adblock', DESC = 'Removes ad billboards'}
@@ -9420,8 +9410,7 @@ end)
 
 addcmd('norender',{},function(args, speaker)
 	RunService:Set3dRenderingEnabled(false)
-	local g=Instance.new("ScreenGui",game.Players.LocalPlayer.PlayerGui); g.Name="BlackScreen"; g.IgnoreGuiInset=true; g.DisplayOrder=9999; local f=Instance.new("Frame",g"); f.Size=UDim2.new(1,0,1,0); f.Position=UDim2.new(0,0,0,0); f.BackgroundColor3=Color3.new(0,0,0); f.BorderSizePixel=0
-
+	local g=Instance.new("ScreenGui",game.Players.LocalPlayer.PlayerGui); g.Name="BlackScreen"; g.IgnoreGuiInset=true; g.DisplayOrder=9999; local f=Instance.new("Frame","g"); f.Size=UDim2.new(1,0,1,0); f.Position=UDim2.new(0,0,0,0); f.BackgroundColor3=Color3.new(0,0,0); f.BorderSizePixel=0
 end)
 
 addcmd('render',{},function(args, speaker)
@@ -11127,72 +11116,6 @@ function getTorso(x)
 	x = x or Players.LocalPlayer.Character
 	return x:FindFirstChild("Torso") or x:FindFirstChild("UpperTorso") or x:FindFirstChild("LowerTorso") or x:FindFirstChild("HumanoidRootPart")
 end
-local isbanging = false
-addcmd("bang", {"rape"}, function(args, speaker)
-	execCmd("unbang")
-	wait()
-	local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
-	bangAnim = Instance.new("Animation")
-	bangAnim.AnimationId = not r15(speaker) and "rbxassetid://148840371" or "rbxassetid://5918726674"
-	bang = humanoid:LoadAnimation(bangAnim)
-	bang:Play(0.1, 1, 1)
-	bang:AdjustSpeed(args[2] or 3)
-	bangDied = humanoid.Died:Connect(function()
-		bang:Stop()
-		bangAnim:Destroy()
-		bangDied:Disconnect()
-		bangLoop:Disconnect()
-	end)
-	if args[1] then
-		local players = getPlayer(args[1], speaker)
-		for _, v in pairs(players) do
-			local bangplr = Players[v].Name
-			local bangOffet = CFrame.new(0, 0, 1.1)
-			bangLoop = RunService.Stepped:Connect(function()
-				pcall(function()
-					local otherRoot = getTorso(Players[bangplr].Character)
-					getRoot(speaker.Character).CFrame = otherRoot.CFrame * bangOffet
-				end)
-			end)
-		end
-	end
-end)
-
-
-addcmd("facebang", {"facerape","facefuck"}, function(args, speaker)
-	if args[1] then
-		local players = getPlayer(args[1], speaker)
-		for _, v in pairs(players) do
-			execCmd("unbang")
-			task.wait()
-			isbanging = true
-			local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
-			bangAnim = Instance.new("Animation")
-			bangAnim.AnimationId = not r15(speaker) and "rbxassetid://148840371" or "rbxassetid://5918726674"
-			bang = humanoid:LoadAnimation(bangAnim)
-			bang:Play(0.1, 1, 1)
-			bang:AdjustSpeed(args[2] or 2)
-			bangDied = humanoid.Died:Connect(function()
-				bang:Stop()
-				bangAnim:Destroy()
-				bangDied:Disconnect()
-				isbanging = false
-			end)
-			local bangplr = Players[v].Name
-			local bangOffet = CFrame.new(0, 2.3, -1.1)
-			while task.wait() do
-				if isbanging == false then
-					break
-				end
-				local otherRoot = getTorso(Players[bangplr].Character)
-				getRoot(speaker.Character).CFrame = otherRoot.CFrame * bangOffet * CFrame.Angles(0,3.15,0)
-				getRoot(speaker.Character).Velocity = Vector3.new(0,0,0)
-			end
-		end
-	end
-end)
-
---------------------------------------------------------------------------------------------------------
 
 addcmd("antibang",{'antirape'},function(args, speaker)
 	AntiBangEnabled = true
@@ -11272,15 +11195,6 @@ addcmd("abdelay", {"ardistance"}, function(args, speaker)
 	local rdelay = args[1]
 	AbDelay = tonumber(rdelay)
 	notify("Anti-Bang Delay", "The delay has been set to "..AbDelay)
-end)
-
-addcmd("unbang", {"unrape","unfacebang","unfacerape","unfacefuck"}, function(args, speaker)
-	if bangDied then
-		bangDied:Disconnect()
-		bang:Stop()
-		bangAnim:Destroy()
-		isbanging = false
-	end
 end)
 
 addcmd('carpet',{},function(args, speaker)
@@ -11615,10 +11529,6 @@ addcmd('unlight',{'nolight'},function(args, speaker)
 			v:Destroy()
 		end
 	end
-end)
-
-addcmd('emotewheelreplacement',{},function(args, speaker)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/fuckusfm/useless-scritps/main/Emotes/main"))()
 end)
 
 local hiddenplayers = {}
@@ -13384,14 +13294,6 @@ task.spawn(function()
 			Exit.Text = ""
 			Exit.ZIndex = 10
 
-			ExitImage.Parent = Exit
-			ExitImage.BackgroundColor3 = Color3.new(1, 1, 1)
-			ExitImage.BackgroundTransparency = 1
-			ExitImage.Position = UDim2.new(0, 5, 0, 5)
-			ExitImage.Size = UDim2.new(0, 10, 0, 10)
-			ExitImage.Image = getcustomasset("infiniteyield/assets/close.png")
-			ExitImage.ZIndex = 10
-
 			wait(1)
 			AnnGUI:TweenPosition(UDim2.new(0.5, -180, 0, 150), "InOut", "Quart", 0.5, true, nil)
 
@@ -13401,13 +13303,6 @@ task.spawn(function()
 				AnnGUI:Destroy()
 			end)
 		end
-	end
-end)
-task.spawn(function()
-	iyonloadstuff(true)
-	while task.wait() do
-		iyonloadstuff()
-		task.wait(1000)
 	end
 end)
 task.spawn(function()
