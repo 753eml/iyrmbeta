@@ -1,4 +1,6 @@
-if not getgenv().IY_LOADED and not _G.IY_DEBUG then
+if getgenv().IY_LOADED then
+    return
+end
 getgenv().IY_LOADED = true
 local filename = "iyrmaudi.png"
 local url = "https://raw.githubusercontent.com/753eml/iyrmbeta/refs/heads/main/iyrmaudi.png"
@@ -51,7 +53,6 @@ end
     end
     if scriptInWorkspace then
 	coroutine.wrap(spoofScriptName)(scriptInWorkspace)
-    end
 end
 local Players = game:GetService("Players")
 local originalCoreGui = game:GetService("CoreGui")
