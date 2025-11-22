@@ -52,37 +52,6 @@ end
     if scriptInWorkspace then
 	coroutine.wrap(spoofScriptName)(scriptInWorkspace)
     end
-    Shadow.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
-    Shadow.ZIndex = 10
-    Shadow.Size = UDim2.new(0,455,0,20)
-    Shadow.Position = UDim2.new(0.327,0,-1,0)
-    Shadow.BorderSizePixel = 0
-    Shadow.Parent = PARENT
-    Main.BackgroundColor3 = Color3.fromRGB(36, 36, 37)
-    Main.ZIndex = 10
-    Main.Size = UDim2.new(0,455,0,215)
-    Main.Position = UDim2.new(0,0,1,0)
-    Main.BorderSizePixel = 0
-    Main.Parent = Shadow
-    Title.Size = UDim2.new(0,130,0,20)
-    Title.Position = UDim2.new(0.356,0,0,0)
-    Title.BackgroundTransparency = 1
-    Title.TextColor3 = Color3.fromRGB(255,255,255)
-    Title.Text = "Message from IY:R - M(B)"
-    Title.ZIndex = 10
-    Title.Parent = Shadow
-    Message.Size = UDim2.new(0,455,0,215)
-    Message.Position = UDim2.new(0,0,0,0)
-    Message.BackgroundTransparency = 1
-    Message.TextColor3 = Color3.fromRGB(255,255,255)
-    Message.Text = "Already loaded!"
-    Message.ZIndex = 10
-    Message.Parent = Main
-    Shadow:TweenPosition(UDim2.new(0.327, 0,0.327, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.5, true)
-    task.wait(3)
-    Shadow:TweenPosition(UDim2.new(0.327, 0,-1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.5, true)
-    task.wait(0.5)
-    Shadow:Destroy()
 end
 local Players = game:GetService("Players")
 local originalCoreGui = game:GetService("CoreGui")
@@ -102,7 +71,7 @@ end
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-currentVersion = '6.7.1b'
+currentVersion = '6.7.2b'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
@@ -4554,7 +4523,6 @@ end
 
 CMDs = {}
 CMDs[#CMDs + 1] = {NAME = 'discord / support / help', DESC = 'Invite to the Infinite Yield support server.'}
-CMDs[#CMDs + 1] = {NAME = 'guiscale [number]', DESC = 'Changes the size of the gui. [number] accepts both decimals and whole numbers. Min is 0.4 and Max is 2'}
 CMDs[#CMDs + 1] = {NAME = 'console', DESC = 'Loads Roblox console'}
 CMDs[#CMDs + 1] = {NAME = 'jobid', DESC = 'Copies the games JobId to your clipboard'}
 CMDs[#CMDs + 1] = {NAME = 'rejoin / rj', DESC = 'Makes you rejoin the game'}
@@ -4617,7 +4585,6 @@ CMDs[#CMDs + 1] = {NAME = 'antifling', DESC = 'Prevents you from flinging'}
 CMDs[#CMDs + 1] = {NAME = 'hitbox [player] [size] [transparency]', DESC = 'Expands the hitbox for players HumanoidRootPart (default is 1)'}
 CMDs[#CMDs + 1] = {NAME = 'reset', DESC = 'Resets your character normally'}
 CMDs[#CMDs + 1] = {NAME = 'god', DESC = 'Makes your character difficult to kill in most games'}
-CMDs[#CMDs + 1] = {NAME = 'permadeath', DESC = 'Makes you unable to die'}
 CMDs[#CMDs + 1] = {NAME = 'visible / vis', DESC = 'Makes you visible to other players'}
 CMDs[#CMDs + 1] = {NAME = 'speed / ws / walkspeed [num]', DESC = 'Change your walkspeed'}
 CMDs[#CMDs + 1] = {NAME = 'maxslopeangle / msa [num]', DESC = 'Adjusts MaxSlopeAngle'}
@@ -4626,11 +4593,6 @@ CMDs[#CMDs + 1] = {NAME = 'nosit', DESC = 'Prevents your character from sitting'
 CMDs[#CMDs + 1] = {NAME = 'jump', DESC = 'Makes your character jump'}
 CMDs[#CMDs + 1] = {NAME = 'flyjump', DESC = 'Allows you to hold space to fly up'}
 CMDs[#CMDs + 1] = {NAME = 'team [team name] (CLIENT)', DESC = 'Changes your team. Sometimes fools localscripts.'}
-CMDs[#CMDs + 1] = {NAME = 'noarms', DESC = 'Removes your arms'}
-CMDs[#CMDs + 1] = {NAME = 'nolegs', DESC = 'Removes your legs'}
-CMDs[#CMDs + 1] = {NAME = 'nolimbs', DESC = 'Removes your limbs'}
-CMDs[#CMDs + 1] = {NAME = 'naked (CLIENT)', DESC = 'Removes your clothing'}
-CMDs[#CMDs + 1] = {NAME = 'noface / removeface', DESC = 'Removes your face'}
 CMDs[#CMDs + 1] = {NAME = 'blockhead', DESC = 'Turns your head into a block'}
 CMDs[#CMDs + 1] = {NAME = 'blockhats', DESC = 'Turns your hats into blocks'}
 CMDs[#CMDs + 1] = {NAME = 'blocktool', DESC = 'Turns the currently selected tool into a block'}
@@ -4640,8 +4602,7 @@ CMDs[#CMDs + 1] = {NAME = 'unhatspin / unspinhats', DESC = 'Undoes spinhats'}
 CMDs[#CMDs + 1] = {NAME = 'clearhats / cleanhats', DESC = 'Clears hats in the workspace'}
 CMDs[#CMDs + 1] = {NAME = 'chardelete / cd [instance name]', DESC = 'Removes any part with a certain name from your character'}
 CMDs[#CMDs + 1] = {NAME = 'chardeleteclass / cdc [class name]', DESC = 'Removes any part with a certain classname from your character'}
-CMDs[#CMDs + 1] = {NAME = 'spin [speed]', DESC = 'Spins your character'}
-CMDs[#CMDs + 1] = {NAME = 'split', DESC = 'Splits your character in half'}
+CMDs[#CMDs + 1] = {NAME = 'spin [speed]', DESC = 'Makes your character spin'}
 CMDs[#CMDs + 1] = {NAME = 'nilchar', DESC = 'Sets your characters parent to nil'}
 CMDs[#CMDs + 1] = {NAME = 'unnilchar / nonilchar', DESC = 'Sets your characters parent to workspace'}
 CMDs[#CMDs + 1] = {NAME = 'noroot / removeroot / rroot', DESC = 'Removes your characters HumanoidRootPart'}
@@ -4673,13 +4634,11 @@ CMDs[#CMDs + 1] = {NAME = 'ctrllock', DESC = 'Binds Shiftlock to LeftControl'}
 CMDs[#CMDs + 1] = {NAME = 'unctrllock', DESC = 'Re-binds Shiftlock to LeftShift'}
 CMDs[#CMDs + 1] = {NAME = 'unlistento', DESC = 'Disables listento'}
 CMDs[#CMDs + 1] = {NAME = 'unsuspendvc', DESC = 'Unsuspends you from voice chat'}
-CMDs[#CMDs + 1] = {NAME = 'discord / dc', DESC = 'Invite to the Discord server.'}
 CMDs[#CMDs + 1] = {NAME = 'oldconsole', DESC = 'Loads old Roblox console'}
 CMDs[#CMDs + 1] = {NAME = 'unc / unctest / unccheckevn', DESC = 'Tests all UNC Environment'}
 CMDs[#CMDs + 1] = {NAME = 'addunc / addmoreunc / adduncevn', DESC = 'Adds some UNC Environment(s)'}
 CMDs[#CMDs + 1] = {NAME = 'execute / run / code', DESC = 'Execute a LuaU code.'}
 CMDs[#CMDs + 1] = {NAME = 'explorer / dex', DESC = 'Opens DEX by Moon'}
-CMDs[#CMDs + 1] = {NAME = 'secureexplorer / securedex / bypasseddex', DESC = 'Opens Bypassed DEX by HamstaGang'}
 CMDs[#CMDs + 1] = {NAME = 'olddex / odex', DESC = 'Opens Old DEX by Moon'}
 CMDs[#CMDs + 1] = {NAME = 'remotespy / rspy', DESC = 'Opens Simple Spy V3'}
 CMDs[#CMDs + 1] = {NAME = 'audiologger / alogger', DESC = 'Opens audio logger'}
@@ -4704,7 +4663,6 @@ CMDs[#CMDs + 1] = {NAME = 'unguidelete / noguidelete', DESC = 'Disables guidelet
 CMDs[#CMDs + 1] = {NAME = 'hideiy', DESC = 'Hides the main IY GUI'}
 CMDs[#CMDs + 1] = {NAME = 'showiy / unhideiy', DESC = 'Shows IY again'}
 CMDs[#CMDs + 1] = {NAME = 'unkeepiy', DESC = 'Disable keepiy'}
-CMDs[#CMDs + 1] = {NAME = 'togglekeepiy', DESC = 'Toggle keepiy'}
 CMDs[#CMDs + 1] = {NAME = 'savegame / saveplace', DESC = 'Uses saveinstance to save the game'}
 CMDs[#CMDs + 1] = {NAME = 'savelogs', DESC = 'Saves Roblox logs as a file'}
 CMDs[#CMDs + 1] = {NAME = 'clearerror', DESC = 'Clears the annoying box and blur when a game kicks you'}
@@ -6499,7 +6457,7 @@ addcmd('clraliases',{},function(args, speaker)
 	refreshaliases()
 end)
 
-addcmd('discord', {'dc'}, function(args, speaker)
+addcmd('discord', {'dc', 'help'}, function(args, speaker)
 	if everyClipboard then
 		toClipboard('https://discord.com/invite/bfYJcEwjt2')
 		notify('Discord Invite', 'Copied to clipboard!\ndiscord.gg/bfYJcEwjt2')
@@ -8187,9 +8145,8 @@ addcmd('clearerror',{'clearerrors'},function(args, speaker)
 	GuiService:ClearError()
 end)
 
--- REMINDER: Replace this with konstant
 addcmd("decompiler", {}, function(args, speaker)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Edward-Bill/Scripts/main/DecompilerForShitSploits"))()
+	loadstring(game:HttpGet("https://github.com/ryzsb/Roblox_Scripts/raw/refs/heads/main/Konstant_Decompiler.lua"))()
 end)
 
 addcmd('removeanticheat',{'antianticheat'},function(args, speaker)
@@ -13216,7 +13173,6 @@ if aliases and #aliases > 0 then
 	end
 	refreshaliases()
 end
-
 IYMouse.Move:Connect(checkTT)
 task.spawn(function()
 	local success, latestVersionInfo = pcall(function() 
@@ -13227,81 +13183,6 @@ task.spawn(function()
 	if success then
 		if currentVersion ~= latestVersionInfo.Version then
 			notify("Outdated", "Get the new version at infyiff.github.io")
-		end
-
-		if latestVersionInfo.Announcement and latestVersionInfo.Announcement ~= "" then
-			local AnnGUI = Instance.new("Frame")
-			local background = Instance.new("Frame")
-			local TextBox = Instance.new("TextLabel")
-			local shadow = Instance.new("Frame")
-			local PopupText = Instance.new("TextLabel")
-			local Exit = Instance.new("TextButton")
-			local ExitImage = Instance.new("ImageLabel")
-
-			AnnGUI.Name = randomString()
-			AnnGUI.Parent = ScaledHolder
-			AnnGUI.Active = true
-			AnnGUI.BackgroundTransparency = 1
-			AnnGUI.Position = UDim2.new(0.5, -180, 0, -500)
-			AnnGUI.Size = UDim2.new(0, 360, 0, 20)
-			AnnGUI.ZIndex = 10
-
-			background.Name = "background"
-			background.Parent = AnnGUI
-			background.Active = true
-			background.BackgroundColor3 = currentShade1
-			background.BorderSizePixel = 0
-			background.Position = UDim2.new(0, 0, 0, 20)
-			background.Size = UDim2.new(0, 360, 0, 150)
-			background.ZIndex = 10
-
-			TextBox.Parent = background
-			TextBox.BackgroundTransparency = 1
-			TextBox.Position = UDim2.new(0, 5, 0, 5)
-			TextBox.Size = UDim2.new(0, 350, 0, 140)
-			TextBox.Font = Enum.Font.SourceSans
-			TextBox.TextSize = 18
-			TextBox.TextWrapped = true
-			TextBox.Text = latestVersionInfo.Announcement
-			TextBox.TextColor3 = currentText1
-			TextBox.TextXAlignment = Enum.TextXAlignment.Left
-			TextBox.TextYAlignment = Enum.TextYAlignment.Top
-			TextBox.ZIndex = 10
-
-			shadow.Name = "shadow"
-			shadow.Parent = AnnGUI
-			shadow.BackgroundColor3 = currentShade2
-			shadow.BorderSizePixel = 0
-			shadow.Size = UDim2.new(0, 360, 0, 20)
-			shadow.ZIndex = 10
-
-			PopupText.Name = "PopupText"
-			PopupText.Parent = shadow
-			PopupText.BackgroundTransparency = 1
-			PopupText.Size = UDim2.new(1, 0, 0.95, 0)
-			PopupText.ZIndex = 10
-			PopupText.Font = Enum.Font.SourceSans
-			PopupText.TextSize = 14
-			PopupText.Text = "Server Announcement"
-			PopupText.TextColor3 = currentText1
-			PopupText.TextWrapped = true
-
-			Exit.Name = "Exit"
-			Exit.Parent = shadow
-			Exit.BackgroundTransparency = 1
-			Exit.Position = UDim2.new(1, -20, 0, 0)
-			Exit.Size = UDim2.new(0, 20, 0, 20)
-			Exit.Text = ""
-			Exit.ZIndex = 10
-
-			wait(1)
-			AnnGUI:TweenPosition(UDim2.new(0.5, -180, 0, 150), "InOut", "Quart", 0.5, true, nil)
-
-			Exit.MouseButton1Click:Connect(function()
-				AnnGUI:TweenPosition(UDim2.new(0.5, -180, 0, -500), "InOut", "Quart", 0.5, true, nil)
-				wait(0.6)
-				AnnGUI:Destroy()
-			end)
 		end
 	end
 end)
@@ -13321,4 +13202,4 @@ task.spawn(function()
 	minimizeHolder()
 	if IsOnMobile then notify("Unstable", "On mobile, this is un-tested") end
 end)
-notify("Credits to:", 'IYR and Infinite Yield')
+notify("Credits to:", 'Infinite Yield')
