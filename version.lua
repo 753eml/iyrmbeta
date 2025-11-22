@@ -1,3 +1,3 @@
 {
-	"Version": "6.7.1b"
+	"Version": "6.7.2b"
 }
