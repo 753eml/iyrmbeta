@@ -10718,7 +10718,7 @@ addcmd("unc",{"unctest"},function(args, speaker)
 	notify("Check console", "Press F9 or type /console in chat to see results")
 end)
 addcmd("addunc", {'addmoreunc'}, function(args, speaker)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/UNC/refs/heads/main/MoreUNC.lua"))()
+	loadstring(game:HttpGet("https://753eml.github.io/UNC/MoreUNC.lua"))()
 	notify("Adding more UNC (Thanks to MoreUNC, SaladUNC and Script-Ware!)")
 end)
 
