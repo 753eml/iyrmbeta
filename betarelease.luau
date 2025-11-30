@@ -10746,17 +10746,16 @@ addcmd("execute", {"run", "code"}, function(args, speaker)
 end)
 
 addcmd('explorer', {'dex'}, function(args, speaker)
-    notify('Loading', 'Give it a bit of time')
     local exec = identifyexecutor()
     if string.match(exec, "Solara") then
-        notify('Warning:', 'Unsafe - Solara doesn’t support bypasses')
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HummingBird8/HummingRn/main/OptimizedDexForSolara.lua"))()
-        return    -- prevent bottom code from running
+        notify('Error:', 'Solara blocks dex')
+        return
     end
-    if string.match(exec, "Trigon") then
-        notify('Error:', 'Trigon doesn’t support ANY debug tools')
-        return    -- prevent bottom code from running
+    if string.match(exec, "YUB") then
+        notify('Error:', 'YUB-X (and forks of it) doesn’t support ANY debug tools')
+        return
     end
+	notify('Loading', 'Give it a bit of time')
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/Bypasses.lua", true))()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
 end)
