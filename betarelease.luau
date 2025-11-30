@@ -10746,12 +10746,21 @@ addcmd("execute", {"run", "code"}, function(args, speaker)
 end)
 
 addcmd('explorer', {'dex'}, function(args, speaker)
-	notify('Loading', 'Give it a bit of time')
-	local exec = identifyexecutor()
-	if string.match(exec, "Solara") then loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))() notify('Warning:', 'Unsafe - Solara doesn't support bypasses') elseif string.match(exec, "Trigon") then notify('Error:', 'Trigon doesn't support ANY debug tools') return end
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/Bypasses.lua", true))()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+    notify('Loading', 'Give it a bit of time')
+    local exec = identifyexecutor()
+    if string.match(exec, "Solara") then
+        notify('Warning:', 'Unsafe - Solara doesn’t support bypasses')
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+        return    -- prevent bottom code from running
+    end
+    if string.match(exec, "Trigon") then
+        notify('Error:', 'Trigon doesn’t support ANY debug tools')
+        return    -- prevent bottom code from running
+    end
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/Bypasses.lua", true))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
 end)
+
 
 addcmd('olddex', {'odex'}, function(args, speaker)
 	notify('Loading old explorer', 'Hold on a sec')
