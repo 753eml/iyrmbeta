@@ -10750,7 +10750,7 @@ addcmd('explorer', {'dex'}, function(args, speaker)
     local exec = identifyexecutor()
     if string.match(exec, "Solara") then
         notify('Warning:', 'Unsafe - Solara doesn’t support bypasses')
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HummingBird8/HummingRn/main/OptimizedDexForSolara.lua"))()
         return    -- prevent bottom code from running
     end
     if string.match(exec, "Trigon") then
