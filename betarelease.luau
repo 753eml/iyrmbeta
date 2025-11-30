@@ -10747,6 +10747,8 @@ end)
 
 addcmd('explorer', {'dex'}, function(args, speaker)
 	notify('Loading', 'Give it a bit of time')
+	local exec = identifyexecutor()
+	if string.match(exec, "Solara" then loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))() elseif string.match(exec, "Trigon" then loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))() end
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/Bypasses.lua", true))()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
 end)
