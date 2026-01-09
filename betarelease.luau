@@ -72,7 +72,7 @@ end
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-currentVersion = '6.7.2b'
+currentVersion = '6.7.3b'
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
 Dark = Instance.new("Frame")
@@ -10747,10 +10747,6 @@ end)
 
 addcmd('explorer', {'dex'}, function(args, speaker)
     local exec = identifyexecutor()
-    if string.match(exec, "Solara") then
-        notify('Error:', 'Solara blocks dex')
-        return
-    end
     if string.match(exec, "YUB") then
         notify('Error:', 'YUB-X (and forks of it) doesn’t support ANY debug tools')
         return
